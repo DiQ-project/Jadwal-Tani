@@ -1,0 +1,44 @@
+name: Build Jadwal Tani Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ambil kode project
+        uses: actions/checkout@v6
+
+      - name: Siapkan Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Siapkan Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Buat project Android Capacitor
+        run: npx cap add android
+
+      - name: Sinkronkan Capacitor
+        run: npx cap sync android
+
+      - name: Build APK
+        run: |
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Simpan APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Jadwal-Tani-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
