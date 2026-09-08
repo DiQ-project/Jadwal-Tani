@@ -1,0 +1,14 @@
+{
+  "name": "jadwal-tani",
+  "version": "2.0.0",
+  "description": "Aplikasi Jadwal Tani",
+  "private": true,
+  "dependencies": {
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0"
+  }
+}
