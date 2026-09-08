@@ -23,7 +23,9 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install -D typescript
 
       - name: Buat project Android Capacitor
         run: npx cap add android
