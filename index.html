@@ -420,7 +420,7 @@ textarea{
 
     <button
       class="smallbtn"
-      onclick="enableNotifications()"
+      onclick="enableNativeNotifications()"
     >
       Aktifkan
     </button>
@@ -505,7 +505,6 @@ textarea{
       🌱 Mulai Budidaya
     </h2>
 
-
     <label>
       Nama budidaya
     </label>
@@ -514,7 +513,6 @@ textarea{
       id="farmName"
       placeholder="Contoh: Stroberi Blok A"
     >
-
 
     <label>
       Tanaman
@@ -533,13 +531,11 @@ textarea{
 
     </select>
 
-
     <input
       id="farmCustomPlant"
       class="hidden"
       placeholder="Tulis nama tanaman, contoh: Semangka"
     >
-
 
     <div class="grid">
 
@@ -555,7 +551,6 @@ textarea{
         >
 
       </div>
-
 
       <div>
 
@@ -575,7 +570,6 @@ textarea{
 
     </div>
 
-
     <label>
       Jumlah tanaman (opsional)
     </label>
@@ -588,7 +582,6 @@ textarea{
       placeholder="1200"
     >
 
-
     <label>
       Catatan
     </label>
@@ -597,7 +590,6 @@ textarea{
       id="farmNote"
       placeholder="Varietas, lokasi, kondisi awal, dll."
     ></textarea>
-
 
     <div class="row">
 
@@ -634,7 +626,6 @@ textarea{
       📅 Tambah Jadwal
     </h2>
 
-
     <label>
       Tanaman
     </label>
@@ -652,13 +643,11 @@ textarea{
 
     </select>
 
-
     <input
       id="customPlant"
       class="hidden"
       placeholder="Tulis nama tanaman, contoh: Semangka"
     >
-
 
     <label>
       Kegiatan
@@ -666,36 +655,15 @@ textarea{
 
     <select id="activity">
 
-      <option>
-        💧 Penyiraman
-      </option>
-
-      <option>
-        🌱 Pemupukan
-      </option>
-
-      <option>
-        🐛 Pengendalian Hama
-      </option>
-
-      <option>
-        🍄 Fungisida
-      </option>
-
-      <option>
-        ✂️ Pemangkasan
-      </option>
-
-      <option>
-        🧺 Panen
-      </option>
-
-      <option>
-        📝 Catatan
-      </option>
+      <option>💧 Penyiraman</option>
+      <option>🌱 Pemupukan</option>
+      <option>🐛 Pengendalian Hama</option>
+      <option>🍄 Fungisida</option>
+      <option>✂️ Pemangkasan</option>
+      <option>🧺 Panen</option>
+      <option>📝 Catatan</option>
 
     </select>
-
 
     <label>
       Tanggal
@@ -706,7 +674,6 @@ textarea{
       id="date"
     >
 
-
     <label>
       Catatan
     </label>
@@ -715,7 +682,6 @@ textarea{
       id="detail"
       placeholder="Contoh: NPK 16-16-16"
     >
-
 
     <label>
       Pengulangan
@@ -726,32 +692,14 @@ textarea{
       onchange="toggleRepeatOptions()"
     >
 
-      <option value="none">
-        Tidak diulang
-      </option>
-
-      <option value="daily">
-        Setiap hari
-      </option>
-
-      <option value="weekly">
-        Setiap minggu
-      </option>
-
-      <option value="biweekly">
-        Setiap 2 minggu
-      </option>
-
-      <option value="monthly">
-        Setiap bulan
-      </option>
-
-      <option value="custom">
-        Interval sendiri
-      </option>
+      <option value="none">Tidak diulang</option>
+      <option value="daily">Setiap hari</option>
+      <option value="weekly">Setiap minggu</option>
+      <option value="biweekly">Setiap 2 minggu</option>
+      <option value="monthly">Setiap bulan</option>
+      <option value="custom">Interval sendiri</option>
 
     </select>
-
 
     <div
       id="repeatOptions"
@@ -776,7 +724,6 @@ textarea{
 
       </div>
 
-
       <label>
         Waktu pengingat (opsional)
       </label>
@@ -791,7 +738,6 @@ textarea{
       </div>
 
     </div>
-
 
     <div class="row">
 
@@ -853,8 +799,7 @@ let completed =
 
 function getLocalDate(){
 
-  const d =
-    new Date();
+  const d = new Date();
 
   const year =
     d.getFullYear();
