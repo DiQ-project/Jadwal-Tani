@@ -3,7 +3,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.jadwaltani.app',
   appName: 'Jadwal Tani',
-  webDir: '.',
+  webDir: 'www',
   plugins: {
     LocalNotifications: {
       smallIcon: 'ic_launcher',
