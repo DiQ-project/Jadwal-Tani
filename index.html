@@ -1,29 +1,38 @@
-<!DOCTYPE html><html lang="id">
-<head><meta charset="UTF-8"><meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<!DOCTYPE html>
+<html lang="id">
 
-«»
+<head>
 
-<meta
-name="theme-color"
-content="#2f7d32"
-
-«»
+<meta charset="UTF-8">
 
 <meta
-name="description"
-content="Jadwal Tani — pengingat dan pengelolaan kegiatan budidaya."
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-«»
+<meta
+  name="theme-color"
+  content="#2f7d32"
+>
+
+<meta
+  name="description"
+  content="Jadwal Tani — pengingat dan pengelolaan kegiatan budidaya."
+>
 
 <link
   rel="manifest"
   href="./manifest.webmanifest"
-><link
+>
+
+<link
   rel="apple-touch-icon"
   href="./icons/icon-192.png"
-><title>Jadwal Tani</title><style>
+>
+
+<title>Jadwal Tani</title>
+
+<style>
 
 *{
   box-sizing:border-box
@@ -267,419 +276,544 @@ textarea{
 
 </style>
 
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-messaging-compat.js"></script>
+</head>
 
-<script>
-  const firebaseConfig = { 
-  apiKey : "AIzaSyCP-zxg8IHmG-8b04m99SMn5BAWszsspoA" , 
-  authDomain : "jadwal-tani.firebaseapp.com" , 
-  projectId : "jadwal-tani" , 
-  storageBucket : "jadwal-tani.firebasestorage.app" , 
-  messagingSenderId : "667160800975" , 
-  appId : "1:667160800975:web:820b58405abe10dd2491ba" 
-};
+<body>
 
-  firebase.initializeApp(firebaseConfig);
+<header>
 
-  const messaging = firebase.messaging();
-</script>
+  <h1>🌱 Jadwal Tani</h1>
 
-</head><body><header>  <h1>🌱 Jadwal Tani</h1>  <p>
+  <p>
     Kelola kebun, kegiatan, dan jadwal pertanianmu.
-  </p></header><main><!-- MULAI BUDIDAYA --><div class="card hero">  <div><div class="muted">
-  JADWAL TANI • VERSI 2
-</div>
+  </p>
 
-<h2 style="margin:6px 0">
-  🌱 Mulai Budidaya
-</h2>
-
-<p style="margin:0;color:#627062">
-  Masukkan tanaman dan tanggal tanam.
-  Umur tanaman akan dihitung otomatis.
-</p>
-
-  </div>  <button onclick="openCultivation()">
-    ＋ Mulai Budidaya
-  </button></div><!-- HARI INI --><div class="card">  <div class="row between"><div>
-
-  <div class="muted">
-    HARI INI
-  </div>
-
-  <h2
-    id="today"
-    style="margin:5px 0"
-  ></h2>
-
-</div>
-
-<div class="icon">
-  🌾
-</div>
-
-  </div></div><!-- BUDIDAYA --><div class="card">  <div class="row between"><h3 style="margin:0">
-  🌱 Budidaya Saya
-</h3>
-
-<span
-  class="badge"
-  id="farmCount"
->
-  0 proyek
-</span>
-
-  </div>  <div id="farms"></div></div><!-- JADWAL HARI INI --><div class="card">  <div class="row between"><h3 style="margin:0">
-  📅 Jadwal Hari Ini
-</h3>
-
-<button
-  class="smallbtn"
-  onclick="openModal()"
->
-  ＋ Tambah
-</button>
-
-  </div>  <div id="tasks"></div></div><!-- PENGINGAT --><div class="card">  <div class="row between"><h3 style="margin:0">
-  🔔 Pengingat
-</h3>
-
-<button
-  class="smallbtn"
-  onclick="enableNotifications()"
->
-  Aktifkan
-</button>
-
-  </div>  <p class="muted">Izinkan notifikasi agar Jadwal Tani
-bisa mengingatkan kegiatan.
-
-Tombol di bawah untuk tes notifikasi.
-
-  </p><button
-class="secondary"
-onclick="testNotification()"
-
-«»
-
-🔔 Tes Notifikasi
-
-  </button></div><!-- JADWAL MENDATANG --><div class="card">  <div class="row between"><h3 style="margin:0">
-  🔔 Jadwal Mendatang
-</h3>
-
-<span class="badge">
-  Otomatis
-</span>
-
-  </div>  <div id="upcoming"></div></div><!-- CATATAN --><div class="card">  <h3>
-    📝 Catatan Kebun
-  </h3>  <textarea
-    id="notes"
-    placeholder="Contoh: Stroberi Blok A mulai berbunga..."
-  ></textarea>  <button onclick="saveNotes()">
-    Simpan Catatan
-  </button></div></main><!-- ================================= --><!-- MODAL MULAI BUDIDAYA --><!-- ================================= --><div
-  class="modal"
-  id="cultivationModal"
->  <div class="modalbox"><h2 style="margin-top:0">
-  🌱 Mulai Budidaya
-</h2>
+</header>
 
 
-<label>
-  Nama budidaya
-</label>
-
-<input
-  id="farmName"
-  placeholder="Contoh: Stroberi Blok A"
->
+<main>
 
 
-<label>
-  Tanaman
-</label>
+<!-- ================================= -->
+<!-- MULAI BUDIDAYA -->
+<!-- ================================= -->
 
-<select
-  id="farmPlant"
-  onchange="toggleFarmCustom()"
->
-
-  <option>Stroberi</option>
-  <option>Cabai</option>
-  <option>Bawang Daun</option>
-  <option>Tomat</option>
-  <option>Lainnya</option>
-
-</select>
-
-
-<input
-  id="farmCustomPlant"
-  class="hidden"
-  placeholder="Tulis nama tanaman, contoh: Semangka"
->
-
-
-<div class="grid">
+<div class="card hero">
 
   <div>
 
+    <div class="muted">
+      JADWAL TANI • VERSI 2
+    </div>
+
+    <h2 style="margin:6px 0">
+      🌱 Mulai Budidaya
+    </h2>
+
+    <p style="margin:0;color:#627062">
+      Masukkan tanaman dan tanggal tanam.
+      Umur tanaman akan dihitung otomatis.
+    </p>
+
+  </div>
+
+  <button onclick="openCultivation()">
+    ＋ Mulai Budidaya
+  </button>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- HARI INI -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <div class="row between">
+
+    <div>
+
+      <div class="muted">
+        HARI INI
+      </div>
+
+      <h2
+        id="today"
+        style="margin:5px 0"
+      ></h2>
+
+    </div>
+
+    <div class="icon">
+      🌾
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- BUDIDAYA -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <div class="row between">
+
+    <h3 style="margin:0">
+      🌱 Budidaya Saya
+    </h3>
+
+    <span
+      class="badge"
+      id="farmCount"
+    >
+      0 proyek
+    </span>
+
+  </div>
+
+  <div id="farms"></div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- JADWAL HARI INI -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <div class="row between">
+
+    <h3 style="margin:0">
+      📅 Jadwal Hari Ini
+    </h3>
+
+    <button
+      class="smallbtn"
+      onclick="openModal()"
+    >
+      ＋ Tambah
+    </button>
+
+  </div>
+
+  <div id="tasks"></div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- PENGINGAT -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <div class="row between">
+
+    <h3 style="margin:0">
+      🔔 Pengingat
+    </h3>
+
+    <button
+      class="smallbtn"
+      onclick="enableNotifications()"
+    >
+      Aktifkan
+    </button>
+
+  </div>
+
+  <p class="muted">
+    Izinkan notifikasi agar Jadwal Tani
+    bisa mengingatkan kegiatan walaupun
+    aplikasi sedang ditutup.
+  </p>
+
+  <button
+    class="secondary"
+    onclick="testNotification()"
+  >
+    🔔 Tes Notifikasi
+  </button>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- JADWAL MENDATANG -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <div class="row between">
+
+    <h3 style="margin:0">
+      🔔 Jadwal Mendatang
+    </h3>
+
+    <span class="badge">
+      Otomatis
+    </span>
+
+  </div>
+
+  <div id="upcoming"></div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- CATATAN -->
+<!-- ================================= -->
+
+<div class="card">
+
+  <h3>
+    📝 Catatan Kebun
+  </h3>
+
+  <textarea
+    id="notes"
+    placeholder="Contoh: Stroberi Blok A mulai berbunga..."
+  ></textarea>
+
+  <button onclick="saveNotes()">
+    Simpan Catatan
+  </button>
+
+</div>
+
+</main>
+
+
+<!-- ================================= -->
+<!-- MODAL MULAI BUDIDAYA -->
+<!-- ================================= -->
+
+<div
+  class="modal"
+  id="cultivationModal"
+>
+
+  <div class="modalbox">
+
+    <h2 style="margin-top:0">
+      🌱 Mulai Budidaya
+    </h2>
+
+
     <label>
-      Tanggal tanam
+      Nama budidaya
+    </label>
+
+    <input
+      id="farmName"
+      placeholder="Contoh: Stroberi Blok A"
+    >
+
+
+    <label>
+      Tanaman
+    </label>
+
+    <select
+      id="farmPlant"
+      onchange="toggleFarmCustom()"
+    >
+
+      <option>Stroberi</option>
+      <option>Cabai</option>
+      <option>Bawang Daun</option>
+      <option>Tomat</option>
+      <option>Lainnya</option>
+
+    </select>
+
+
+    <input
+      id="farmCustomPlant"
+      class="hidden"
+      placeholder="Tulis nama tanaman, contoh: Semangka"
+    >
+
+
+    <div class="grid">
+
+      <div>
+
+        <label>
+          Tanggal tanam
+        </label>
+
+        <input
+          type="date"
+          id="farmDate"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Luas (m²)
+        </label>
+
+        <input
+          type="number"
+          id="farmArea"
+          min="0"
+          step="0.01"
+          placeholder="500"
+        >
+
+      </div>
+
+    </div>
+
+
+    <label>
+      Jumlah tanaman (opsional)
+    </label>
+
+    <input
+      type="number"
+      id="farmQty"
+      min="0"
+      step="1"
+      placeholder="1200"
+    >
+
+
+    <label>
+      Catatan
+    </label>
+
+    <textarea
+      id="farmNote"
+      placeholder="Varietas, lokasi, kondisi awal, dll."
+    ></textarea>
+
+
+    <div class="row">
+
+      <button onclick="addFarm()">
+        🚜 Mulai Budidaya
+      </button>
+
+      <button
+        class="secondary"
+        onclick="closeCultivation()"
+      >
+        Batal
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- MODAL TAMBAH JADWAL -->
+<!-- ================================= -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="modalbox">
+
+    <h2 style="margin-top:0">
+      📅 Tambah Jadwal
+    </h2>
+
+
+    <label>
+      Tanaman
+    </label>
+
+    <select
+      id="plant"
+      onchange="toggleCustomPlant()"
+    >
+
+      <option>Stroberi</option>
+      <option>Cabai</option>
+      <option>Bawang Daun</option>
+      <option>Tomat</option>
+      <option>Lainnya</option>
+
+    </select>
+
+
+    <input
+      id="customPlant"
+      class="hidden"
+      placeholder="Tulis nama tanaman, contoh: Semangka"
+    >
+
+
+    <label>
+      Kegiatan
+    </label>
+
+    <select id="activity">
+
+      <option>
+        💧 Penyiraman
+      </option>
+
+      <option>
+        🌱 Pemupukan
+      </option>
+
+      <option>
+        🐛 Pengendalian Hama
+      </option>
+
+      <option>
+        🍄 Fungisida
+      </option>
+
+      <option>
+        ✂️ Pemangkasan
+      </option>
+
+      <option>
+        🧺 Panen
+      </option>
+
+      <option>
+        📝 Catatan
+      </option>
+
+    </select>
+
+
+    <label>
+      Tanggal
     </label>
 
     <input
       type="date"
-      id="farmDate"
+      id="date"
     >
 
-  </div>
-
-
-  <div>
 
     <label>
-      Luas (m²)
+      Catatan
     </label>
 
     <input
-      type="number"
-      id="farmArea"
-      min="0"
-      step="0.01"
-      placeholder="500"
+      id="detail"
+      placeholder="Contoh: NPK 16-16-16"
     >
 
-  </div>
-
-</div>
-
-
-<label>
-  Jumlah tanaman (opsional)
-</label>
-
-<input
-  type="number"
-  id="farmQty"
-  min="0"
-  step="1"
-  placeholder="1200"
->
-
-
-<label>
-  Catatan
-</label>
-
-<textarea
-  id="farmNote"
-  placeholder="Varietas, lokasi, kondisi awal, dll."
-></textarea>
-
-
-<div class="row">
-
-  <button onclick="addFarm()">
-    🚜 Mulai Budidaya
-  </button>
-
-  <button
-    class="secondary"
-    onclick="closeCultivation()"
-  >
-    Batal
-  </button>
-
-</div>
-
-  </div></div><!-- ================================= --><!-- MODAL TAMBAH JADWAL --><!-- ================================= --><div
-  class="modal"
-  id="modal"
->  <div class="modalbox"><h2 style="margin-top:0">
-  📅 Tambah Jadwal
-</h2>
-
-
-<label>
-  Tanaman
-</label>
-
-<select
-  id="plant"
-  onchange="toggleCustomPlant()"
->
-
-  <option>Stroberi</option>
-  <option>Cabai</option>
-  <option>Bawang Daun</option>
-  <option>Tomat</option>
-  <option>Lainnya</option>
-
-</select>
-
-
-<input
-  id="customPlant"
-  class="hidden"
-  placeholder="Tulis nama tanaman, contoh: Semangka"
->
-
-
-<label>
-  Kegiatan
-</label>
-
-<select id="activity">
-
-  <option>
-    💧 Penyiraman
-  </option>
-
-  <option>
-    🌱 Pemupukan
-  </option>
-
-  <option>
-    🐛 Pengendalian Hama
-  </option>
-
-  <option>
-    🍄 Fungisida
-  </option>
-
-  <option>
-    ✂️ Pemangkasan
-  </option>
-
-  <option>
-    🧺 Panen
-  </option>
-
-  <option>
-    📝 Catatan
-  </option>
-
-</select>
-
-
-<label>
-  Tanggal
-</label>
-
-<input
-  type="date"
-  id="date"
->
-
-
-<label>
-  Catatan
-</label>
-
-<input
-  id="detail"
-  placeholder="Contoh: NPK 16-16-16"
->
-
-
-<label>
-  Pengulangan
-</label>
-
-<select
-  id="repeat"
-  onchange="toggleRepeatOptions()"
->
-
-  <option value="none">
-    Tidak diulang
-  </option>
-
-  <option value="daily">
-    Setiap hari
-  </option>
-
-  <option value="weekly">
-    Setiap minggu
-  </option>
-
-  <option value="biweekly">
-    Setiap 2 minggu
-  </option>
-
-  <option value="monthly">
-    Setiap bulan
-  </option>
-
-  <option value="custom">
-    Interval sendiri
-  </option>
-
-</select>
-
-
-<div
-  id="repeatOptions"
-  class="repeatbox hidden"
->
-
-  <div
-    id="customIntervalBox"
-    class="hidden"
-  >
 
     <label>
-      Ulang setiap berapa hari?
+      Pengulangan
     </label>
 
-    <input
-      type="number"
-      id="repeatDays"
-      min="1"
-      value="14"
+    <select
+      id="repeat"
+      onchange="toggleRepeatOptions()"
     >
 
-  </div>
+      <option value="none">
+        Tidak diulang
+      </option>
+
+      <option value="daily">
+        Setiap hari
+      </option>
+
+      <option value="weekly">
+        Setiap minggu
+      </option>
+
+      <option value="biweekly">
+        Setiap 2 minggu
+      </option>
+
+      <option value="monthly">
+        Setiap bulan
+      </option>
+
+      <option value="custom">
+        Interval sendiri
+      </option>
+
+    </select>
 
 
-  <label>
-    Waktu pengingat (opsional)
-  </label>
+    <div
+      id="repeatOptions"
+      class="repeatbox hidden"
+    >
 
-  <input
-    type="time"
-    id="repeatTime"
-  >
+      <div
+        id="customIntervalBox"
+        class="hidden"
+      >
 
-  <div class="muted">
-    Contoh: 08:00 untuk pengingat pukul 8 pagi.
+        <label>
+          Ulang setiap berapa hari?
+        </label>
+
+        <input
+          type="number"
+          id="repeatDays"
+          min="1"
+          value="14"
+        >
+
+      </div>
+
+
+      <label>
+        Waktu pengingat (opsional)
+      </label>
+
+      <input
+        type="time"
+        id="repeatTime"
+      >
+
+      <div class="muted">
+        Contoh: 08:00 untuk pengingat pukul 8 pagi.
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <button onclick="addTask()">
+        💾 Simpan
+      </button>
+
+      <button
+        class="secondary"
+        onclick="closeModal()"
+      >
+        Batal
+      </button>
+
+    </div>
+
   </div>
 
 </div>
 
 
-<div class="row">
-
-  <button onclick="addTask()">
-    💾 Simpan
-  </button>
-
-  <button
-    class="secondary"
-    onclick="closeModal()"
-  >
-    Batal
-  </button>
-
-</div>
-
-  </div></div>
 <script>
-
 
 /* ================================= */
 /* DATA */
@@ -1183,6 +1317,43 @@ function allOccurrences(
 
 
 /* ================================= */
+/* SINKRONISASI NOTIFIKASI ANDROID */
+/* ================================= */
+
+function syncNativeReminderNotifications(){
+
+  if(
+    typeof window.syncNativeNotifications !==
+    'function'
+  ){
+
+    return;
+
+  }
+
+
+  const upcoming =
+    allOccurrences(60)
+      .filter(x=>{
+
+        const completedId =
+          x.index +
+          '|' +
+          x.date;
+
+        return !completed[completedId];
+
+      });
+
+
+  window.syncNativeNotifications(
+    upcoming
+  );
+
+}
+
+
+/* ================================= */
 /* TEKS PENGULANGAN */
 /* ================================= */
 
@@ -1403,6 +1574,14 @@ function renderUpcoming(){
     allOccurrences(30)
       .filter(
         x => x.date !== iso
+      )
+      .filter(
+        x =>
+          !completed[
+            x.index +
+            '|' +
+            x.date
+          ]
       )
       .slice(0,10);
 
@@ -1933,6 +2112,9 @@ function addTask(){
   renderTasks();
 
 
+  syncNativeReminderNotifications();
+
+
   closeModal();
 
 
@@ -1992,6 +2174,9 @@ function completeTask(i,date){
 
   renderTasks();
 
+
+  syncNativeReminderNotifications();
+
 }
 
 
@@ -2039,6 +2224,9 @@ function removeTask(i){
 
     renderTasks();
 
+
+    syncNativeReminderNotifications();
+
   }
 
 }
@@ -2070,19 +2258,7 @@ function saveNotes(){
 
 
 /* ================================= */
-/* NOTIFIKASI */
-/* ================================= */
-
-let notifiedToday =
-  JSON.parse(
-    localStorage.getItem(
-      'jadwalTaniNotified'
-    ) || '{}'
-  );
-
-
-/* ================================= */
-/* SERVICE WORKER */
+/* SERVICE WORKER PWA */
 /* ================================= */
 
 async function registerSW(){
@@ -2115,284 +2291,10 @@ async function registerSW(){
 
 
 /* ================================= */
-/* AKTIFKAN NOTIFIKASI */
-/* ================================= */
-
-async function enableNotifications(){
-
-  if(!('Notification' in window)){
-
-  alert(
-    'Browser ini belum mendukung notifikasi.'
-  );
-
-  return;
-
-}
-
-try{
-
-  const permission =
-    await Notification.requestPermission();
-
-  if(permission !== 'granted'){
-
-    alert(
-      'Izin notifikasi belum diberikan.'
-    );
-
-    return;
-
-  }
-
-  const registration =
-    await navigator.serviceWorker.ready;
-
-  const token =
-    await messaging.getToken({
-
-      vapidKey:
-        'BOT7gi1NrXZYPv4oL9voqFUYBj2mL_CdN6LfDRi0JNPf-AAvzSnwMDB2GcjCwDgDJoDFtGLAMhkGmWGP-zMOV0Y',
-
-      serviceWorkerRegistration:
-        registration
-
-    });
-
-  if(!token){
-
-    alert(
-      'Token FCM belum berhasil dibuat.'
-    );
-
-    return;
-
-  }
-
-  localStorage.setItem(
-    'jadwalTaniFCMToken',
-    token
-  );
-
-  console.log(
-    'FCM TOKEN:',
-    token
-  );
-
-  alert(
-    'Notifikasi FCM berhasil diaktifkan 🔔🌱'
-  );
-
-}
-
-catch(error){
-
-  console.error(
-    'FCM Error:',
-    error
-  );
-
-  alert(
-    'Gagal mengaktifkan notifikasi FCM. Cek Console.'
-  );
-
-}
-
-}
-
-
-/* ================================= */
-/* TES NOTIFIKASI */
-/* ================================= */
-
-async function testNotification(){
-
-  if(
-    !('Notification' in window)
-  ){
-
-    alert(
-      'Browser ini belum mendukung notifikasi.'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    Notification.permission !==
-    'granted'
-  ){
-
-    const p =
-      await Notification
-        .requestPermission();
-
-
-    if(
-      p !== 'granted'
-    )
-      return;
-
-  }
-
-
-  if(
-    navigator.serviceWorker &&
-    navigator.serviceWorker.controller
-  ){
-
-    navigator.serviceWorker
-      .controller
-      .postMessage({
-
-        type:
-          'SHOW_NOTIFICATION',
-
-        title:
-          'Jadwal Tani 🌱',
-
-        body:
-          'Tes berhasil! Sistem pengingat siap digunakan.'
-
-      });
-
-  }
-
-  else{
-
-    new Notification(
-      'Jadwal Tani 🌱',
-      {
-        body:
-          'Tes berhasil! Sistem pengingat siap digunakan.'
-      }
-    );
-
-  }
-
-}
-
-
-/* ================================= */
-/* CEK NOTIFIKASI */
-/* ================================= */
-
-function checkDueNotifications(){
-
-  if(
-    !('Notification' in window) ||
-    Notification.permission !==
-    'granted'
-  )
-    return;
-
-
-  const now2 =
-    new Date();
-
-
-  const today2 =
-    formatLocalDate(
-      now2
-    );
-
-
-  const hhmm =
-    now2
-      .toTimeString()
-      .slice(0,5);
-
-
-  const due =
-    allOccurrences(0)
-      .filter(
-        x =>
-          x.date === today2 &&
-          x.time &&
-          x.time === hhmm
-      );
-
-
-  due.forEach(x=>{
-
-    const id =
-      x.index +
-      '|' +
-      x.date +
-      '|' +
-      x.time;
-
-
-    if(
-      notifiedToday[id]
-    )
-      return;
-
-
-    notifiedToday[id] =
-      true;
-
-
-    localStorage.setItem(
-      'jadwalTaniNotified',
-      JSON.stringify(
-        notifiedToday
-      )
-    );
-
-
-    if(
-      navigator
-        .serviceWorker
-        ?.controller
-    ){
-
-      navigator
-        .serviceWorker
-        .controller
-        .postMessage({
-
-          type:
-            'SHOW_NOTIFICATION',
-
-          title:
-            'Jadwal Tani 🌱',
-
-          body:
-            `Waktunya ${
-              x.task.activity
-            } — ${
-              x.task.plant
-            }${
-              x.task.detail
-              ? ' • ' +
-                x.task.detail
-              : ''
-            }`
-
-        });
-
-    }
-
-  });
-
-}
-
-
-/* ================================= */
 /* JALANKAN APLIKASI */
 /* ================================= */
 
 registerSW();
-
-
-setInterval(
-  checkDueNotifications,
-  30000
-);
-
 
 renderFarms();
 
@@ -2400,5 +2302,15 @@ renderTasks();
 
 toggleRepeatOptions();
 
-</script></body>
+</script>
+
+
+<!-- ================================= -->
+<!-- NATIVE ANDROID NOTIFICATIONS -->
+<!-- ================================= -->
+
+<script src="./capacitor-notifications.js"></script>
+
+
+</body>
 </html>
