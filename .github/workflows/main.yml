@@ -85,6 +85,9 @@ jobs:
           cp icons/icon-512.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
           cp icons/icon-512.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
 
+          rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+
       - name: Sinkronkan Capacitor
         run: npx cap sync android
 
