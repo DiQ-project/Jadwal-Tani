@@ -735,16 +735,17 @@
 </head>
 
 <body>
+
   <main class="app">
 
-    <!-- HALAMAN BERANDA -->
+    <!-- ==================== BERANDA ==================== -->
     <section id="page-home" class="page active">
 
       <div class="topbar">
         <div class="brand">
 
           <div class="brand-icon">
-            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24">
               <path d="M12 21V10"></path>
               <path d="M12 13C7 13 4 10 4 4c6 0 9 3 8 9Z"></path>
               <path d="M12 17c5 0 8-3 8-9-5 0-8 3-8 9Z"></path>
@@ -755,14 +756,16 @@
             <div class="brand-title">Jadwal Tani</div>
             <div class="brand-subtitle">Asisten kegiatan budidaya</div>
           </div>
+
         </div>
 
         <button class="icon-button" onclick="showPage('more')" aria-label="Pengaturan">
-          <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="icon-svg" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 1.7-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.7-1.7.1-.1A1.7 1.7 0 0 0 8.4 15a1.7 1.7 0 0 0-1.6-1H6v-2.4h.8a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L8 8.6l1.7-1.7.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.4v.7a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.7 1.7-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.7V14h-.7a1.7 1.7 0 0 0-1.6 1Z"></path>
           </svg>
         </button>
+
       </div>
 
       <div class="hero">
@@ -774,7 +777,7 @@
       <button class="action-card" onclick="openCultivation()">
 
         <div class="action-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="icon-svg" viewBox="0 0 24 24">
             <path d="M12 21V9"></path>
             <path d="M12 14c-4 0-6-2-6-6 4 0 6 2 6 6Z"></path>
             <path d="M12 11c0-4 2-6 6-6 0 4-2 6-6 6Z"></path>
@@ -793,6 +796,7 @@
             <path d="m9 18 6-6-6-6"></path>
           </svg>
         </div>
+
       </button>
 
       <div class="section-heading">
@@ -801,10 +805,11 @@
       </div>
 
       <div id="farmsContainer"></div>
+
     </section>
 
 
-    <!-- HALAMAN JADWAL -->
+    <!-- ==================== JADWAL ==================== -->
     <section id="page-schedule" class="page">
 
       <div class="topbar">
@@ -868,7 +873,7 @@
     </section>
 
 
-    <!-- HALAMAN CATATAN -->
+    <!-- ==================== CATATAN ==================== -->
     <section id="page-notes" class="page">
 
       <div class="topbar">
@@ -926,7 +931,7 @@
     </section>
 
 
-    <!-- HALAMAN LAINNYA -->
+    <!-- ==================== LAINNYA ==================== -->
     <section id="page-more" class="page">
 
       <div class="topbar">
@@ -983,7 +988,7 @@
           Aktifkan Notifikasi
         </button>
 
-        <button class="secondary-button" onclick="testNotification()">
+        <button class="secondary-button" onclick="testNotificationUI()">
           Tes Notifikasi
         </button>
 
@@ -1019,7 +1024,7 @@
   </main>
 
 
-  <!-- NAVIGASI BAWAH -->
+  <!-- ==================== NAVIGASI ==================== -->
   <nav class="bottom-nav">
 
     <div class="bottom-nav-inner">
@@ -1087,7 +1092,7 @@
   </nav>
 
 
-  <!-- MODAL NAMA -->
+  <!-- ==================== MODAL NAMA ==================== -->
   <div id="nameModal" class="modal-backdrop">
 
     <div class="modal">
@@ -1143,7 +1148,7 @@
   </div>
 
 
-  <!-- MODAL BUDIDAYA -->
+  <!-- ==================== MODAL BUDIDAYA ==================== -->
   <div id="cultivationModal" class="modal-backdrop">
 
     <div class="modal">
@@ -1262,7 +1267,7 @@
   </div>
 
 
-  <!-- MODAL PENGINGAT -->
+  <!-- ==================== MODAL PENGINGAT ==================== -->
   <div id="taskModal" class="modal-backdrop">
 
     <div class="modal">
@@ -1419,8 +1424,9 @@
 
 
   <script>
-    const iso = getLocalDate();
-    const now = new Date();
+    /* =========================================================
+       DATA APLIKASI
+       ========================================================= */
 
     let tasks = JSON.parse(
       localStorage.getItem("jadwalTaniTasks") || "[]"
@@ -1435,59 +1441,89 @@
     );
 
 
+    /* =========================================================
+       TANGGAL & FORMAT
+       ========================================================= */
+
     function getLocalDate(date = new Date()) {
+
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
+
+      const month = String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
+
+      const day = String(
+        date.getDate()
+      ).padStart(2, "0");
 
       return `${year}-${month}-${day}`;
     }
 
 
     function formatDate(dateString) {
+
       if (!dateString) return "-";
 
       const date = new Date(
         dateString + "T00:00:00"
       );
 
-      return date.toLocaleDateString("id-ID", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      });
+      return date.toLocaleDateString(
+        "id-ID",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }
+      );
     }
 
 
     function formatShortDate(dateString) {
+
       if (!dateString) return "-";
 
       const date = new Date(
         dateString + "T00:00:00"
       );
 
-      return date.toLocaleDateString("id-ID", {
-        day: "numeric",
-        month: "short"
-      });
+      return date.toLocaleDateString(
+        "id-ID",
+        {
+          day: "numeric",
+          month: "short"
+        }
+      );
     }
 
 
     function getDayName(dateString) {
+
       const date = new Date(
         dateString + "T00:00:00"
       );
 
-      return date.toLocaleDateString("id-ID", {
-        weekday: "long"
-      });
+      return date.toLocaleDateString(
+        "id-ID",
+        {
+          weekday: "long"
+        }
+      );
     }
 
 
+    /* =========================================================
+       UTILITAS
+       ========================================================= */
+
     function showToast(message) {
-      const toast = document.getElementById("toast");
+
+      const toast =
+        document.getElementById("toast");
 
       toast.textContent = message;
+
       toast.classList.add("show");
 
       setTimeout(() => {
@@ -1496,28 +1532,48 @@
     }
 
 
+    function esc(value) {
+
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+
+    /* =========================================================
+       NAVIGASI
+       ========================================================= */
+
     function showPage(pageName) {
 
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-      });
+      document
+        .querySelectorAll(".page")
+        .forEach(page => {
+          page.classList.remove("active");
+        });
 
-      const target = document.getElementById(
-        "page-" + pageName
-      );
+      const target =
+        document.getElementById(
+          "page-" + pageName
+        );
 
       if (target) {
         target.classList.add("active");
       }
 
-      document.querySelectorAll(".nav-item").forEach(item => {
+      document
+        .querySelectorAll(".nav-item")
+        .forEach(item => {
 
-        item.classList.toggle(
-          "active",
-          item.dataset.page === pageName
-        );
+          item.classList.toggle(
+            "active",
+            item.dataset.page === pageName
+          );
 
-      });
+        });
 
       if (pageName === "home") {
         renderFarms();
@@ -1543,10 +1599,21 @@
     }
 
 
+    /* =========================================================
+       NAMA PENGGUNA
+       ========================================================= */
+
     function openNameModal() {
 
-      const modal = document.getElementById("nameModal");
-      const input = document.getElementById("userNameInput");
+      const modal =
+        document.getElementById(
+          "nameModal"
+        );
+
+      const input =
+        document.getElementById(
+          "userNameInput"
+        );
 
       input.value =
         localStorage.getItem(
@@ -1555,11 +1622,15 @@
 
       modal.classList.add("show");
 
-      setTimeout(() => input.focus(), 200);
+      setTimeout(
+        () => input.focus(),
+        200
+      );
     }
 
 
     function closeNameModal() {
+
       document
         .getElementById("nameModal")
         .classList.remove("show");
@@ -1569,9 +1640,12 @@
     function saveUserName() {
 
       const input =
-        document.getElementById("userNameInput");
+        document.getElementById(
+          "userNameInput"
+        );
 
-      const name = input.value.trim();
+      const name =
+        input.value.trim();
 
       if (!name) {
         showToast("Nama belum diisi");
@@ -1588,7 +1662,9 @@
       updateSettingName();
       closeNameModal();
 
-      showToast("Nama berhasil disimpan");
+      showToast(
+        "Nama berhasil disimpan"
+      );
     }
 
 
@@ -1611,17 +1687,27 @@
 
     function getGreeting() {
 
-      const hour = new Date().getHours();
+      const hour =
+        new Date().getHours();
 
-      if (hour >= 4 && hour <= 10) {
+      if (
+        hour >= 4 &&
+        hour <= 10
+      ) {
         return "Selamat pagi";
       }
 
-      if (hour >= 11 && hour <= 14) {
+      if (
+        hour >= 11 &&
+        hour <= 14
+      ) {
         return "Selamat siang";
       }
 
-      if (hour >= 15 && hour <= 17) {
+      if (
+        hour >= 15 &&
+        hour <= 17
+      ) {
         return "Selamat sore";
       }
 
@@ -1638,11 +1724,13 @@
 
       document.getElementById(
         "greetingText"
-      ).textContent = getGreeting();
+      ).textContent =
+        getGreeting();
 
       document.getElementById(
         "greetingName"
-      ).textContent = name;
+      ).textContent =
+        name;
 
       document.getElementById(
         "currentDateText"
@@ -1668,24 +1756,34 @@
 
       document.getElementById(
         "settingNameText"
-      ).textContent = name;
+      ).textContent =
+        name;
     }
 
+
+    /* =========================================================
+       BUDIDAYA
+       ========================================================= */
 
     function openCultivation() {
 
       document
-        .getElementById("cultivationModal")
+        .getElementById(
+          "cultivationModal"
+        )
         .classList.add("show");
 
       document.getElementById(
         "farmDate"
-      ).value = getLocalDate();
+      ).value =
+        getLocalDate();
 
       setTimeout(() => {
+
         document.getElementById(
           "farmName"
         ).focus();
+
       }, 200);
     }
 
@@ -1693,7 +1791,9 @@
     function closeCultivation() {
 
       document
-        .getElementById("cultivationModal")
+        .getElementById(
+          "cultivationModal"
+        )
         .classList.remove("show");
     }
 
@@ -1835,39 +1935,51 @@
     }
 
 
-    function calculateAgeDays(dateString) {
+    function calculateAgeDays(
+      dateString
+    ) {
 
-      const start = new Date(
-        dateString + "T00:00:00"
-      );
+      const start =
+        new Date(
+          dateString +
+          "T00:00:00"
+        );
 
-      const today = new Date(
-        getLocalDate() + "T00:00:00"
-      );
+      const today =
+        new Date(
+          getLocalDate() +
+          "T00:00:00"
+        );
 
       const difference =
         today - start;
 
       const days =
         Math.floor(
-          difference / 86400000
+          difference /
+          86400000
         ) + 1;
 
-      return Math.max(days, 1);
+      return Math.max(
+        days,
+        1
+      );
     }
 
 
     function removeFarm(id) {
 
-      const confirmed = confirm(
-        "Hapus budidaya ini? Jadwal yang terkait tidak ikut dihapus."
-      );
+      const confirmed =
+        confirm(
+          "Hapus budidaya ini? Jadwal yang terkait tidak ikut dihapus."
+        );
 
       if (!confirmed) return;
 
-      farms = farms.filter(
-        farm => farm.id !== id
-      );
+      farms =
+        farms.filter(
+          farm => farm.id !== id
+        );
 
       localStorage.setItem(
         "jadwalTaniFarms",
@@ -1876,6 +1988,8 @@
 
       renderFarms();
       updateTaskFarmOptions();
+
+      syncNativeReminderNotifications();
 
       showToast(
         "Budidaya dihapus"
@@ -1913,122 +2027,139 @@
       }
 
       container.innerHTML =
-        farms.map(farm => {
+        farms
+          .map(farm => {
 
-          const age =
-            calculateAgeDays(
-              farm.date
-            );
+            const age =
+              calculateAgeDays(
+                farm.date
+              );
 
-          return `
-            <div class="card farm-card">
+            return `
+              <div class="card farm-card">
 
-              <div class="farm-header">
+                <div class="farm-header">
 
-                <div>
+                  <div>
 
-                  <div class="farm-name">
-                    ${esc(farm.name)}
-                  </div>
-
-                  <div class="farm-type">
-                    ${esc(farm.plant)}
-                  </div>
-
-                </div>
-
-                <button
-                  class="small-button red"
-                  onclick="removeFarm(${farm.id})"
-                >
-                  Hapus
-                </button>
-
-              </div>
-
-              <div class="farm-info">
-
-                <div class="info-box">
-                  <div class="info-label">
-                    Hari ke-
-                  </div>
-                  <div class="info-value">
-                    ${age}
-                  </div>
-                </div>
-
-                <div class="info-box">
-                  <div class="info-label">
-                    Tanggal tanam
-                  </div>
-                  <div class="info-value">
-                    ${formatShortDate(farm.date)}
-                  </div>
-                </div>
-
-                <div class="info-box">
-                  <div class="info-label">
-                    Luas
-                  </div>
-                  <div class="info-value">
-                    ${
-                      farm.area
-                        ? esc(farm.area) + " m²"
-                        : "-"
-                    }
-                  </div>
-                </div>
-
-                <div class="info-box">
-                  <div class="info-label">
-                    Jumlah
-                  </div>
-                  <div class="info-value">
-                    ${
-                      farm.quantity
-                        ? esc(farm.quantity) + " tanaman"
-                        : "-"
-                    }
-                  </div>
-                </div>
-
-              </div>
-
-              ${
-                farm.note
-                  ? `
-                    <div
-                      style="margin-top:12px;font-size:13px;color:#718071;line-height:1.5;"
-                    >
-                      ${esc(farm.note)}
+                    <div class="farm-name">
+                      ${esc(farm.name)}
                     </div>
-                  `
-                  : ""
-              }
 
-            </div>
-          `;
+                    <div class="farm-type">
+                      ${esc(farm.plant)}
+                    </div>
 
-        }).join("");
+                  </div>
+
+                  <button
+                    class="small-button red"
+                    onclick="removeFarm(${farm.id})"
+                  >
+                    Hapus
+                  </button>
+
+                </div>
+
+                <div class="farm-info">
+
+                  <div class="info-box">
+                    <div class="info-label">
+                      Hari ke-
+                    </div>
+                    <div class="info-value">
+                      ${age}
+                    </div>
+                  </div>
+
+                  <div class="info-box">
+                    <div class="info-label">
+                      Tanggal tanam
+                    </div>
+                    <div class="info-value">
+                      ${formatShortDate(
+                        farm.date
+                      )}
+                    </div>
+                  </div>
+
+                  <div class="info-box">
+                    <div class="info-label">
+                      Luas
+                    </div>
+                    <div class="info-value">
+                      ${
+                        farm.area
+                          ? esc(farm.area) +
+                            " m²"
+                          : "-"
+                      }
+                    </div>
+                  </div>
+
+                  <div class="info-box">
+                    <div class="info-label">
+                      Jumlah
+                    </div>
+                    <div class="info-value">
+                      ${
+                        farm.quantity
+                          ? esc(
+                              farm.quantity
+                            ) +
+                            " tanaman"
+                          : "-"
+                      }
+                    </div>
+                  </div>
+
+                </div>
+
+                ${
+                  farm.note
+                    ? `
+                      <div
+                        style="margin-top:12px;font-size:13px;color:#718071;line-height:1.5;"
+                      >
+                        ${esc(farm.note)}
+                      </div>
+                    `
+                    : ""
+                }
+
+              </div>
+            `;
+
+          })
+          .join("");
     }
 
+
+    /* =========================================================
+       MODAL JADWAL
+       ========================================================= */
 
     function openModal() {
 
       document
-        .getElementById("taskModal")
+        .getElementById(
+          "taskModal"
+        )
         .classList.add("show");
 
       document.getElementById(
         "taskDate"
-      ).value = getLocalDate();
+      ).value =
+        getLocalDate();
 
       updateTaskFarmOptions();
 
       setTimeout(() => {
+
         document.getElementById(
           "taskTitle"
         ).focus();
+
       }, 200);
     }
 
@@ -2036,7 +2167,9 @@
     function closeModal() {
 
       document
-        .getElementById("taskModal")
+        .getElementById(
+          "taskModal"
+        )
         .classList.remove("show");
     }
 
@@ -2063,7 +2196,8 @@
         `).join("")}
       `;
 
-      select.value = currentValue;
+      select.value =
+        currentValue;
     }
 
 
@@ -2124,7 +2258,8 @@
             ".custom-day:checked"
           )
         ).map(
-          input => Number(input.value)
+          input =>
+            Number(input.value)
         );
 
       if (!title) {
@@ -2195,15 +2330,19 @@
       ).value = "";
 
       document
-        .querySelectorAll(".custom-day")
+        .querySelectorAll(
+          ".custom-day"
+        )
         .forEach(input => {
           input.checked = false;
         });
 
       toggleRepeatOptions();
       closeModal();
+
       renderTasks();
       renderUpcoming();
+
       syncNativeReminderNotifications();
 
       showToast(
@@ -2211,6 +2350,10 @@
       );
     }
 
+
+    /* =========================================================
+       JADWAL
+       ========================================================= */
 
     function getTaskFarmName(task) {
 
@@ -2256,20 +2399,27 @@
 
       const target =
         new Date(
-          dateString + "T00:00:00"
+          dateString +
+          "T00:00:00"
         );
 
       const start =
         new Date(
-          task.date + "T00:00:00"
+          task.date +
+          "T00:00:00"
         );
 
       if (target < start) {
         return false;
       }
 
-      if (task.repeat === "none") {
-        return dateString === task.date;
+      if (
+        task.repeat === "none"
+      ) {
+        return (
+          dateString ===
+          task.date
+        );
       }
 
       const differenceDays =
@@ -2278,28 +2428,44 @@
           86400000
         );
 
-      if (task.repeat === "daily") {
+      if (
+        task.repeat === "daily"
+      ) {
         return true;
       }
 
-      if (task.repeat === "weekly") {
-        return differenceDays % 7 === 0;
+      if (
+        task.repeat === "weekly"
+      ) {
+        return (
+          differenceDays % 7 === 0
+        );
       }
 
-      if (task.repeat === "biweekly") {
-        return differenceDays % 14 === 0;
+      if (
+        task.repeat === "biweekly"
+      ) {
+        return (
+          differenceDays % 14 === 0
+        );
       }
 
-      if (task.repeat === "monthly") {
+      if (
+        task.repeat === "monthly"
+      ) {
         return (
           target.getDate() ===
           start.getDate()
         );
       }
 
-      if (task.repeat === "custom") {
-        return task.customDays.includes(
-          target.getDay()
+      if (
+        task.repeat === "custom"
+      ) {
+        return (
+          task.customDays.includes(
+            target.getDay()
+          )
         );
       }
 
@@ -2317,7 +2483,8 @@
 
       const start =
         new Date(
-          startDate + "T00:00:00"
+          startDate +
+          "T00:00:00"
         );
 
       for (
@@ -2342,7 +2509,9 @@
             dateString
           )
         ) {
-          result.push(dateString);
+          result.push(
+            dateString
+          );
         }
       }
 
@@ -2355,7 +2524,9 @@
       dateString
     ) {
 
-      return `${taskId}_${dateString}`;
+      return (
+        `${taskId}_${dateString}`
+      );
     }
 
 
@@ -2387,22 +2558,37 @@
         );
 
       if (completed[key]) {
+
         delete completed[key];
+
       } else {
+
         completed[key] = true;
+
       }
 
       localStorage.setItem(
         "jadwalTaniCompleted",
-        JSON.stringify(completed)
+        JSON.stringify(
+          completed
+        )
       );
 
       renderTasks();
       renderUpcoming();
+
+      /*
+       * Penting:
+       * Setelah status kegiatan berubah,
+       * sinkronkan ulang notifikasi native.
+       */
+      syncNativeReminderNotifications();
     }
 
 
-    function removeTask(taskId) {
+    function removeTask(
+      taskId
+    ) {
 
       const confirmed =
         confirm(
@@ -2413,16 +2599,20 @@
 
       tasks =
         tasks.filter(
-          task => task.id !== taskId
+          task =>
+            task.id !== taskId
         );
 
       localStorage.setItem(
         "jadwalTaniTasks",
-        JSON.stringify(tasks)
+        JSON.stringify(
+          tasks
+        )
       );
 
       renderTasks();
       renderUpcoming();
+
       syncNativeReminderNotifications();
 
       showToast(
@@ -2545,6 +2735,7 @@
                 <circle cx="12" cy="12" r="8"></circle>
                 <path d="M12 8v4l3 2"></path>
               </svg>
+
               ${task.time || "-"}
 
               <br />
@@ -2554,7 +2745,12 @@
                 <path d="M12 13C7 13 4 10 4 4c6 0 9 3 8 9Z"></path>
                 <path d="M12 17c5 0 8-3 8-9-5 0-8 3-8 9Z"></path>
               </svg>
-              ${esc(getTaskFarmName(task))}
+
+              ${esc(
+                getTaskFarmName(
+                  task
+                )
+              )}
 
               <br />
 
@@ -2564,6 +2760,7 @@
                 <path d="M20 17H8"></path>
                 <path d="m11 14-3 3 3 3"></path>
               </svg>
+
               ${getRepeatLabel(task)}
 
               ${
@@ -2671,7 +2868,11 @@
                       <path d="M12 17c5 0 8-3 8-9-5 0-8 3-8 9Z"></path>
                     </svg>
 
-                    ${esc(getTaskFarmName(task))}
+                    ${esc(
+                      getTaskFarmName(
+                        task
+                      )
+                    )}
 
                   </div>
 
@@ -2709,7 +2910,9 @@
 
         if (
           task.active === false
-        ) return;
+        ) {
+          return;
+        }
 
         const dates =
           taskOccurrences(
@@ -2800,7 +3003,9 @@
                   <div
                     class="task-title ${done ? "done" : ""}"
                   >
-                    ${esc(item.task.title)}
+                    ${esc(
+                      item.task.title
+                    )}
                   </div>
 
                   <div class="task-meta">
@@ -2810,8 +3015,12 @@
                       <path d="M16 2v4M8 2v4M3 10h18"></path>
                     </svg>
 
-                    ${getDayName(item.date)},
-                    ${formatDate(item.date)}
+                    ${getDayName(
+                      item.date
+                    )},
+                    ${formatDate(
+                      item.date
+                    )}
 
                     <br />
 
@@ -2849,6 +3058,10 @@
     }
 
 
+    /* =========================================================
+       CATATAN
+       ========================================================= */
+
     function saveNotes() {
 
       const notes =
@@ -2876,25 +3089,86 @@
 
       document.getElementById(
         "notesInput"
-      ).value = notes;
+      ).value =
+        notes;
     }
+
+
+    /* =========================================================
+       NOTIFIKASI
+       =========================================================
+       
+       PENTING:
+       Kita sengaja tidak memakai Firebase.
+
+       Prioritas:
+       1. Capacitor bridge lama
+       2. Capacitor LocalNotifications langsung
+       3. Browser Notification sebagai fallback
+       ========================================================= */
 
 
     function requestNotificationPermission() {
 
+      /*
+       * Ini adalah jalur utama.
+       *
+       * Bridge lama memiliki fungsi:
+       * window.enableNativeNotifications()
+       *
+       * Fungsi tersebut bukan cuma meminta izin,
+       * tetapi juga melakukan sinkronisasi jadwal.
+       */
+
       if (
-        typeof window.Capacitor !== "undefined" &&
+        typeof window.enableNativeNotifications ===
+        "function"
+      ) {
+
+        window.enableNativeNotifications();
+
+        return;
+      }
+
+
+      /*
+       * Fallback jika bridge belum tersedia.
+       */
+
+      if (
+        typeof window.Capacitor !==
+          "undefined" &&
         window.Capacitor.Plugins &&
         window.Capacitor.Plugins.LocalNotifications
       ) {
 
         window.Capacitor.Plugins.LocalNotifications
           .requestPermissions()
-          .then(() => {
+          .then(result => {
 
-            showToast(
-              "Izin notifikasi sudah diminta"
-            );
+            if (
+              result &&
+              result.display ===
+                "granted"
+            ) {
+
+              showToast(
+                "Notifikasi berhasil diizinkan"
+              );
+
+              setTimeout(() => {
+
+                syncNativeReminderNotifications();
+
+              }, 500);
+
+            } else {
+
+              showToast(
+                "Izin notifikasi belum diberikan"
+              );
+
+            }
 
           })
           .catch(() => {
@@ -2908,13 +3182,22 @@
         return;
       }
 
-      if ("Notification" in window) {
 
-        Notification.requestPermission()
+      /*
+       * Fallback PWA/browser.
+       */
+
+      if (
+        "Notification" in window
+      ) {
+
+        Notification
+          .requestPermission()
           .then(permission => {
 
             if (
-              permission === "granted"
+              permission ===
+              "granted"
             ) {
 
               showToast(
@@ -2934,16 +3217,51 @@
         return;
       }
 
+
       showToast(
         "Notifikasi tidak didukung di perangkat ini"
       );
     }
 
 
-    function testNotification() {
+    /*
+     * Nama fungsi UI dibuat berbeda dari
+     * window.testNotification milik bridge.
+     *
+     * Ini penting supaya tidak terjadi:
+     *
+     * testNotification()
+     * -> testNotification()
+     * -> testNotification()
+     * -> recursion
+     */
+
+    function testNotificationUI() {
+
+      /*
+       * Jalur utama:
+       * gunakan testNotification milik
+       * capacitor-notifications.js
+       */
 
       if (
-        typeof window.Capacitor !== "undefined" &&
+        typeof window.testNotification ===
+        "function"
+      ) {
+
+        window.testNotification();
+
+        return;
+      }
+
+
+      /*
+       * Fallback Capacitor langsung.
+       */
+
+      if (
+        typeof window.Capacitor !==
+          "undefined" &&
         window.Capacitor.Plugins &&
         window.Capacitor.Plugins.LocalNotifications
       ) {
@@ -2956,15 +3274,17 @@
               {
                 id: 999999,
 
-                title: "Jadwal Tani",
+                title:
+                  "Jadwal Tani 🌱",
 
                 body:
-                  "Ini adalah tes notifikasi dari Jadwal Tani",
+                  "Tes berhasil! Notifikasi Android sudah bekerja 🔔",
 
                 schedule: {
                   at:
                     new Date(
-                      Date.now() + 3000
+                      Date.now() +
+                      3000
                     )
                 }
               }
@@ -2990,16 +3310,22 @@
         return;
       }
 
+
+      /*
+       * Fallback browser.
+       */
+
       if (
         "Notification" in window &&
-        Notification.permission === "granted"
+        Notification.permission ===
+          "granted"
       ) {
 
         new Notification(
-          "Jadwal Tani",
+          "Jadwal Tani 🌱",
           {
             body:
-              "Ini adalah tes notifikasi dari Jadwal Tani"
+              "Ini adalah tes notifikasi dari Jadwal Tani 🔔"
           }
         );
 
@@ -3010,61 +3336,88 @@
         return;
       }
 
+
       showToast(
         "Aktifkan izin notifikasi terlebih dahulu"
       );
     }
 
 
-    function syncNativeReminderNotifications() {
+    /* =========================================================
+       JEMBATAN DATA KE CAPACITOR
+       =========================================================
+       
+       UI baru kita punya:
 
-      const upcoming = [];
+       task.title
+       task.farmId
+       task.note
+
+       Bridge lama membutuhkan:
+
+       task.activity
+       task.plant
+       task.detail
+
+       Fungsi ini menerjemahkan keduanya.
+       ========================================================= */
+
+    function allOccurrences(
+      count = 60
+    ) {
+
+      const result = [];
+
+      const today =
+        getLocalDate();
 
       tasks.forEach(task => {
 
         if (
           task.active === false
-        ) return;
+        ) {
+          return;
+        }
 
         const dates =
           taskOccurrences(
             task,
-            getLocalDate(),
-            30
+            today,
+            count
           );
 
         dates.forEach(
           dateString => {
 
-            if (
-              dateString ===
-              getLocalDate()
-            ) return;
+            result.push({
 
-            upcoming.push({
+              task: {
 
-              id:
-                Number(
-                  String(task.id).slice(-6)
-                ) +
-                Number(
-                  dateString.replaceAll(
-                    "-",
-                    ""
-                  )
-                ),
+                activity:
+                  task.title,
 
-              title:
-                task.title,
+                plant:
+                  getTaskFarmName(
+                    task
+                  ),
 
-              body:
-                `Jadwal ${task.title}`,
+                detail:
+                  task.note || ""
+
+              },
 
               date:
                 dateString,
 
               time:
-                task.time || "07:00"
+                task.time || "07:00",
+
+              /*
+               * Data tambahan internal.
+               * Bridge boleh mengabaikannya.
+               */
+              originalTaskId:
+                task.id
 
             });
 
@@ -3073,45 +3426,63 @@
 
       });
 
+      return result;
+    }
+
+
+    /*
+     * Bridge lama membaca window.allOccurrences()
+     */
+
+    window.allOccurrences =
+      allOccurrences;
+
+
+    /* =========================================================
+       SINKRONISASI NOTIFIKASI NATIVE
+       ========================================================= */
+
+    function syncNativeReminderNotifications() {
+
+      /*
+       * Jangan membuat sistem notifikasi kedua.
+       *
+       * Serahkan penjadwalan kepada
+       * capacitor-notifications.js.
+       */
+
       if (
         typeof window.syncNativeNotifications ===
         "function"
       ) {
 
+        const occurrences =
+          window.allOccurrences(
+            60
+          );
+
         window.syncNativeNotifications(
-          upcoming
+          occurrences
         );
+
+        return;
       }
+
+
+      /*
+       * Kalau bridge belum tersedia,
+       * jangan membuat error JavaScript.
+       */
+
+      console.log(
+        "Native notification bridge belum tersedia."
+      );
     }
 
 
-    function esc(value) {
-
-      return String(
-        value ?? ""
-      )
-        .replaceAll(
-          "&",
-          "&amp;"
-        )
-        .replaceAll(
-          "<",
-          "&lt;"
-        )
-        .replaceAll(
-          ">",
-          "&gt;"
-        )
-        .replaceAll(
-          '"',
-          "&quot;"
-        )
-        .replaceAll(
-          "'",
-          "&#039;"
-        );
-    }
-
+    /* =========================================================
+       MODAL BACKDROP
+       ========================================================= */
 
     document
       .querySelectorAll(
@@ -3140,16 +3511,36 @@
       });
 
 
+    /* =========================================================
+       SAAT APP KEMBALI TERLIHAT
+       ========================================================= */
+
     document.addEventListener(
       "visibilitychange",
       function() {
 
-        if (!document.hidden) {
+        if (
+          !document.hidden
+        ) {
 
           updateGreeting();
+
           renderFarms();
+
           renderTasks();
+
           renderUpcoming();
+
+          /*
+           * Saat aplikasi dibuka kembali,
+           * pastikan jadwal native tersinkron.
+           */
+
+          setTimeout(() => {
+
+            syncNativeReminderNotifications();
+
+          }, 500);
 
         }
 
@@ -3157,18 +3548,39 @@
     );
 
 
+    /* =========================================================
+       SAAT APLIKASI DIMUAT
+       ========================================================= */
+
     window.addEventListener(
       "load",
       function() {
 
         updateGreeting();
+
         updateSettingName();
+
         renderFarms();
+
         renderTasks();
+
         renderUpcoming();
+
         loadNotes();
 
-        syncNativeReminderNotifications();
+
+        /*
+         * Beri waktu bridge native untuk siap.
+         *
+         * Jangan langsung sync pada milidetik pertama.
+         */
+
+        setTimeout(() => {
+
+          syncNativeReminderNotifications();
+
+        }, 1500);
+
 
         const savedName =
           localStorage.getItem(
@@ -3181,7 +3593,9 @@
 
           setTimeout(
             () => {
+
               openNameModal();
+
             },
             700
           );
@@ -3192,12 +3606,18 @@
     );
 
 
+    /* =========================================================
+       SERVICE WORKER
+       ========================================================= */
+
     if (
       "serviceWorker" in navigator
     ) {
 
       navigator.serviceWorker
-        .register("./sw.js")
+        .register(
+          "./sw.js"
+        )
         .then(() => {
 
           console.log(
@@ -3215,8 +3635,8 @@
         });
 
     }
+
   </script>
 
 </body>
 </html>
-
