@@ -2,9 +2,16 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <meta name="theme-color" content="#2f7d32" />
+  <meta
+    name="theme-color"
+    content="#2f7d32"
+  />
+
   <meta
     name="description"
     content="Asisten jadwal dan pengingat kegiatan budidaya"
@@ -12,7 +19,10 @@
 
   <title>Jadwal Tani</title>
 
-  <link rel="manifest" href="./manifest.webmanifest" />
+  <link
+    rel="manifest"
+    href="./manifest.webmanifest"
+  />
 
   <style>
     * {
@@ -23,20 +33,26 @@
       --green: #2f7d32;
       --green-dark: #256628;
       --green-soft: #eaf5ea;
+
       --bg: #f4f7f1;
       --card: #ffffff;
+
       --text: #202820;
       --muted: #6b756b;
+
       --border: #e2e8e1;
+
       --danger: #c62828;
-      --warning: #a56a00;
-      --shadow: 0 4px 18px rgba(35, 60, 35, 0.07);
+
+      --shadow:
+        0 4px 18px rgba(35, 60, 35, 0.07);
     }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -44,6 +60,7 @@
         Roboto,
         Arial,
         sans-serif;
+
       line-height: 1.5;
     }
 
@@ -58,114 +75,176 @@
       cursor: pointer;
     }
 
+    /* =========================
+       HEADER
+    ========================= */
+
     .app-header {
       background: var(--green);
       color: white;
+
       padding: 26px 18px 30px;
-      border-radius: 0 0 24px 24px;
+
+      border-radius:
+        0 0 24px 24px;
     }
 
     .header-inner {
-      width: min(650px, calc(100% - 20px));
+      width:
+        min(650px, calc(100% - 20px));
+
       margin: auto;
     }
 
     .app-title {
       margin: 0;
+
       font-size: 27px;
       font-weight: 750;
+
       letter-spacing: -0.4px;
     }
 
     .app-subtitle {
       margin: 5px 0 0;
+
       font-size: 14px;
+
       opacity: 0.88;
     }
 
+    /* =========================
+       CONTAINER
+    ========================= */
+
     .container {
-      width: min(650px, calc(100% - 24px));
+      width:
+        min(650px, calc(100% - 24px));
+
       margin: 18px auto 40px;
     }
 
+    /* =========================
+       CARD
+    ========================= */
+
     .card {
       background: var(--card);
+
       border: 1px solid var(--border);
+
       border-radius: 18px;
+
       padding: 18px;
+
       margin-bottom: 14px;
+
       box-shadow: var(--shadow);
     }
 
     .section-head {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 12px;
+
       margin-bottom: 14px;
     }
 
     .section-title {
       margin: 0;
+
       font-size: 18px;
+
       font-weight: 700;
     }
 
-    .section-desc {
-      margin: -7px 0 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .today-date {
-      font-size: 25px;
-      font-weight: 750;
-      margin: 2px 0 4px;
-    }
-
-    .today-label {
-      color: var(--muted);
-      font-size: 13px;
-    }
+    /* =========================
+       EMPTY
+    ========================= */
 
     .empty {
       padding: 14px;
+
       background: #f7f9f6;
+
       border-radius: 12px;
+
       color: var(--muted);
+
       font-size: 14px;
     }
 
+    /* =========================
+       HARI INI
+    ========================= */
+
+    .today-date {
+      font-size: 22px;
+
+      font-weight: 750;
+
+      margin: 2px 0 4px;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
     .stats {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 15px;
+
       background: var(--green-soft);
+
       border-radius: 14px;
+
       padding: 14px;
+
       margin-bottom: 14px;
     }
 
     .stats-number {
       font-size: 27px;
+
       font-weight: 800;
+
       color: var(--green-dark);
+
       line-height: 1;
     }
 
     .stats-label {
       color: var(--muted);
+
       font-size: 13px;
+
       margin-top: 5px;
     }
 
+    /* =========================
+       BUTTON
+    ========================= */
+
     .btn {
       border: 0;
+
       border-radius: 11px;
+
       padding: 10px 14px;
+
       font-weight: 650;
+
       font-size: 14px;
+
       transition: 0.15s ease;
     }
 
@@ -175,6 +254,7 @@
 
     .btn-primary {
       background: var(--green);
+
       color: white;
     }
 
@@ -184,30 +264,45 @@
 
     .btn-secondary {
       background: #edf2ed;
+
       color: var(--green-dark);
     }
 
     .btn-danger {
-      background: #fff0f0;
+      background: #fff1f1;
+
       color: var(--danger);
+
+      border: 1px solid #ffd6d6;
     }
 
     .btn-small {
       padding: 8px 11px;
+
       font-size: 12px;
     }
 
     .button-row {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 9px;
     }
 
+    /* =========================
+       JADWAL
+    ========================= */
+
     .schedule-item {
       border: 1px solid var(--border);
+
       border-radius: 14px;
+
       padding: 13px;
+
       margin-bottom: 10px;
+
       background: #fff;
     }
 
@@ -217,47 +312,73 @@
 
     .schedule-top {
       display: flex;
+
       justify-content: space-between;
+
       gap: 10px;
+
       align-items: flex-start;
     }
 
     .schedule-title {
       font-weight: 700;
+
       font-size: 15px;
     }
 
     .schedule-plant {
       color: var(--green-dark);
+
       font-size: 12px;
+
       font-weight: 600;
+
       margin-top: 2px;
     }
 
     .schedule-time {
       color: var(--green-dark);
+
       font-weight: 750;
+
       font-size: 14px;
+
       white-space: nowrap;
     }
 
     .schedule-detail {
       color: var(--muted);
+
       font-size: 13px;
+
       margin-top: 7px;
     }
 
     .schedule-actions {
       display: flex;
-      gap: 7px;
-      margin-top: 11px;
+
+      gap: 8px;
+
+      margin-top: 12px;
+
       flex-wrap: wrap;
     }
 
+    .schedule-actions .btn {
+      min-width: 90px;
+    }
+
+    /* =========================
+       BUDIDAYA
+    ========================= */
+
     .farm-item {
       border: 1px solid var(--border);
+
       border-radius: 14px;
+
       padding: 14px;
+
       margin-bottom: 10px;
     }
 
@@ -267,70 +388,102 @@
 
     .farm-name {
       font-weight: 750;
+
       font-size: 16px;
     }
 
     .farm-plant {
       color: var(--green-dark);
+
       font-size: 13px;
+
       margin-top: 2px;
     }
 
     .farm-info {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 8px;
+
       margin-top: 11px;
     }
 
     .info-box {
       background: #f7f9f6;
+
       border-radius: 10px;
+
       padding: 9px;
     }
 
     .info-label {
       color: var(--muted);
+
       font-size: 11px;
     }
 
     .info-value {
       font-size: 13px;
+
       font-weight: 650;
+
       margin-top: 2px;
     }
 
     .farm-note {
       color: var(--muted);
+
       font-size: 13px;
+
       margin-top: 10px;
     }
 
+    /* =========================
+       NOTIFIKASI
+    ========================= */
+
     .notification-box {
       background: #f7f9f6;
+
       border-radius: 14px;
+
       padding: 14px;
+
       margin-bottom: 13px;
     }
 
     .notification-title {
       font-weight: 700;
+
       margin-bottom: 4px;
     }
 
     .notification-text {
       color: var(--muted);
+
       font-size: 13px;
     }
+
+    /* =========================
+       FORM
+    ========================= */
 
     textarea,
     input,
     select {
       width: 100%;
+
       border: 1px solid var(--border);
+
       border-radius: 11px;
+
       background: white;
+
       padding: 11px 12px;
+
       outline: none;
     }
 
@@ -342,6 +495,7 @@
 
     textarea {
       min-height: 130px;
+
       resize: vertical;
     }
 
@@ -355,25 +509,42 @@
 
     .field label {
       display: block;
+
       font-size: 13px;
+
       font-weight: 650;
+
       margin-bottom: 6px;
     }
 
     .field-hint {
       color: var(--muted);
+
       font-size: 11px;
+
       margin-top: 4px;
     }
 
+    /* =========================
+       MODAL
+    ========================= */
+
     .modal {
       position: fixed;
+
       inset: 0;
-      background: rgba(0, 0, 0, 0.42);
+
+      background:
+        rgba(0, 0, 0, 0.42);
+
       display: none;
+
       align-items: flex-end;
+
       justify-content: center;
+
       padding: 12px;
+
       z-index: 1000;
     }
 
@@ -382,41 +553,62 @@
     }
 
     .modal-box {
-      width: min(650px, 100%);
+      width:
+        min(650px, 100%);
+
       max-height: 92vh;
+
       overflow-y: auto;
+
       background: white;
+
       border-radius: 22px;
+
       padding: 20px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+
+      box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.18);
     }
 
     .modal-head {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       margin-bottom: 17px;
     }
 
     .modal-title {
       margin: 0;
+
       font-size: 20px;
     }
 
     .close-btn {
       width: 36px;
+
       height: 36px;
+
       border: 0;
+
       border-radius: 50%;
+
       background: #f0f3ef;
+
       color: #555;
+
       font-size: 20px;
     }
 
     .modal-actions {
       display: flex;
+
       justify-content: flex-end;
+
       gap: 8px;
+
       margin-top: 17px;
     }
 
@@ -424,20 +616,47 @@
       display: none !important;
     }
 
+    /* =========================
+       VERSI
+    ========================= */
+
     .version {
       text-align: center;
+
       color: var(--muted);
+
       font-size: 11px;
-      margin-top: 25px;
+
+      line-height: 1.7;
+
+      margin-top: 28px;
+
+      margin-bottom: 10px;
     }
 
+    .version strong {
+      color: var(--green-dark);
+
+      font-size: 12px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 480px) {
+
       .app-header {
-        padding: 23px 15px 27px;
+        padding:
+          23px 15px 27px;
       }
 
       .container {
-        width: min(100% - 18px, 650px);
+        width:
+          min(
+            100% - 18px,
+            650px
+          );
       }
 
       .card {
@@ -449,7 +668,7 @@
       }
 
       .today-date {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .modal {
@@ -457,63 +676,121 @@
       }
 
       .modal-box {
-        border-radius: 22px 22px 0 0;
+        border-radius:
+          22px 22px 0 0;
       }
+
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
+  <!-- =========================================
+       HEADER
+  ========================================== -->
+
   <header class="app-header">
+
     <div class="header-inner">
-      <h1 class="app-title">Jadwal Tani</h1>
+
+      <h1 class="app-title">
+        Jadwal Tani
+      </h1>
+
       <p class="app-subtitle">
         Kelola kegiatan kebunmu dengan lebih teratur.
       </p>
+
     </div>
+
   </header>
+
 
   <main class="container">
 
-    <!-- HARI INI -->
+
+    <!-- =========================================
+         HARI INI
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Hari Ini</h2>
+
+        <h2 class="section-title">
+          Hari Ini
+        </h2>
+
       </div>
 
-      <div id="today" class="today-date"></div>
+      <div
+        id="today"
+        class="today-date"
+      ></div>
+
     </section>
 
 
-    <!-- BUDIDAYA -->
+    <!-- =========================================
+         BUDIDAYA SAYA
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Budidaya Saya</h2>
+
+        <h2 class="section-title">
+          Budidaya Saya
+        </h2>
+
         <button
           class="btn btn-primary btn-small"
           onclick="openCultivation()"
         >
           + Mulai Budidaya
         </button>
+
       </div>
+
 
       <div class="stats">
+
         <div>
-          <div id="farmCount" class="stats-number">0</div>
-          <div class="stats-label">budidaya aktif</div>
+
+          <div
+            id="farmCount"
+            class="stats-number"
+          >
+            0
+          </div>
+
+          <div class="stats-label">
+            budidaya aktif
+          </div>
+
         </div>
+
       </div>
 
+
       <div id="farms"></div>
+
     </section>
 
 
-    <!-- JADWAL HARI INI -->
+    <!-- =========================================
+         JADWAL HARI INI
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Jadwal Hari Ini</h2>
+
+        <h2 class="section-title">
+          Jadwal Hari Ini
+        </h2>
 
         <button
           class="btn btn-primary btn-small"
@@ -521,30 +798,47 @@
         >
           + Tambah
         </button>
+
       </div>
 
+
       <div id="tasks"></div>
+
     </section>
 
 
-    <!-- PENGINGAT -->
+    <!-- =========================================
+         PENGINGAT
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Pengingat</h2>
+
+        <h2 class="section-title">
+          Pengingat
+        </h2>
+
       </div>
 
+
       <div class="notification-box">
+
         <div class="notification-title">
           Aktifkan pengingat kegiatan
         </div>
 
         <div class="notification-text">
-          Izinkan notifikasi agar Jadwal Tani dapat mengingatkan
-          kegiatan kebun sesuai jadwal.
+          Izinkan notifikasi agar Jadwal Tani
+          dapat mengingatkan kegiatan kebun
+          sesuai jadwal.
         </div>
+
       </div>
 
+
       <div class="button-row">
+
         <button
           class="btn btn-primary"
           onclick="enableNativeNotifications()"
@@ -552,61 +846,116 @@
           Aktifkan Notifikasi
         </button>
 
+
         <button
           class="btn btn-secondary"
           onclick="testNotification()"
         >
           Tes Notifikasi
         </button>
+
       </div>
+
     </section>
 
 
-    <!-- JADWAL MENDATANG -->
+    <!-- =========================================
+         JADWAL MENDATANG
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Jadwal Mendatang</h2>
+
+        <h2 class="section-title">
+          Jadwal Mendatang
+        </h2>
+
       </div>
+
 
       <div id="upcoming"></div>
+
     </section>
 
 
-    <!-- CATATAN -->
+    <!-- =========================================
+         CATATAN KEBUN
+    ========================================== -->
+
     <section class="card">
+
       <div class="section-head">
-        <h2 class="section-title">Catatan Kebun</h2>
+
+        <h2 class="section-title">
+          Catatan Kebun
+        </h2>
+
       </div>
+
 
       <textarea
         id="notes"
         placeholder="Tulis catatan tentang kondisi tanaman, pemupukan, hama, cuaca, atau hal lainnya..."
       ></textarea>
 
+
       <div style="margin-top:10px;">
+
         <button
           class="btn btn-primary"
           onclick="saveNotes()"
         >
           Simpan Catatan
         </button>
+
       </div>
+
     </section>
 
 
+    <!-- =========================================
+         VERSI APLIKASI
+    ========================================== -->
+
     <div class="version">
-      Jadwal Tani • Versi 1.0.0
+
+      <strong>
+        Jadwal Tani
+      </strong>
+
+      <br />
+
+      Versi 1.0.0
+
+      <br />
+
+      Dikembangkan oleh DiQ Project
+
     </div>
+
 
   </main>
 
 
-  <!-- MODAL BUDIDAYA -->
-  <div id="cultivationModal" class="modal">
+  <!-- =========================================
+       MODAL BUDIDAYA
+  ========================================== -->
+
+  <div
+    id="cultivationModal"
+    class="modal"
+  >
+
     <div class="modal-box">
 
+
       <div class="modal-head">
-        <h2 class="modal-title">Mulai Budidaya</h2>
+
+        <h2 class="modal-title">
+          Mulai Budidaya
+        </h2>
+
 
         <button
           class="close-btn"
@@ -614,33 +963,63 @@
         >
           ×
         </button>
+
       </div>
 
+
       <div class="field">
-        <label for="farmName">Nama Budidaya</label>
+
+        <label for="farmName">
+          Nama Budidaya
+        </label>
+
         <input
           id="farmName"
           type="text"
           placeholder="Contoh: Stroberi Kebun Atas"
         />
+
       </div>
+
 
       <div class="field">
-        <label for="farmPlant">Tanaman</label>
+
+        <label for="farmPlant">
+          Tanaman
+        </label>
 
         <select id="farmPlant">
-          <option value="Stroberi">Stroberi</option>
-          <option value="Cabai">Cabai</option>
-          <option value="Bawang Daun">Bawang Daun</option>
-          <option value="Tomat">Tomat</option>
-          <option value="Lainnya">Lainnya</option>
+
+          <option value="Stroberi">
+            Stroberi
+          </option>
+
+          <option value="Cabai">
+            Cabai
+          </option>
+
+          <option value="Bawang Daun">
+            Bawang Daun
+          </option>
+
+          <option value="Tomat">
+            Tomat
+          </option>
+
+          <option value="Lainnya">
+            Lainnya
+          </option>
+
         </select>
+
       </div>
+
 
       <div
         id="farmCustomPlantBox"
         class="field hidden"
       >
+
         <label for="farmCustomPlant">
           Nama Tanaman
         </label>
@@ -650,9 +1029,12 @@
           type="text"
           placeholder="Masukkan nama tanaman"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="farmDate">
           Tanggal Mulai
         </label>
@@ -661,9 +1043,12 @@
           id="farmDate"
           type="date"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="farmArea">
           Luas / Area (m²)
         </label>
@@ -675,9 +1060,12 @@
           step="0.1"
           placeholder="Contoh: 20"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="farmQty">
           Jumlah Tanaman
         </label>
@@ -688,9 +1076,12 @@
           min="0"
           placeholder="Contoh: 100"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="farmNote">
           Catatan
         </label>
@@ -699,9 +1090,12 @@
           id="farmNote"
           placeholder="Catatan awal budidaya..."
         ></textarea>
+
       </div>
 
+
       <div class="modal-actions">
+
         <button
           class="btn btn-secondary"
           onclick="closeCultivation()"
@@ -709,24 +1103,39 @@
           Batal
         </button>
 
+
         <button
           class="btn btn-primary"
           onclick="addFarm()"
         >
           Simpan Budidaya
         </button>
+
       </div>
 
     </div>
+
   </div>
 
 
-  <!-- MODAL JADWAL -->
-  <div id="modal" class="modal">
+  <!-- =========================================
+       MODAL JADWAL
+  ========================================== -->
+
+  <div
+    id="modal"
+    class="modal"
+  >
+
     <div class="modal-box">
 
+
       <div class="modal-head">
-        <h2 class="modal-title">Tambah Jadwal</h2>
+
+        <h2 class="modal-title">
+          Tambah Jadwal
+        </h2>
+
 
         <button
           class="close-btn"
@@ -734,26 +1143,48 @@
         >
           ×
         </button>
+
       </div>
 
+
       <div class="field">
+
         <label for="plant">
           Tanaman
         </label>
 
         <select id="plant">
-          <option value="Stroberi">Stroberi</option>
-          <option value="Cabai">Cabai</option>
-          <option value="Bawang Daun">Bawang Daun</option>
-          <option value="Tomat">Tomat</option>
-          <option value="Lainnya">Lainnya</option>
+
+          <option value="Stroberi">
+            Stroberi
+          </option>
+
+          <option value="Cabai">
+            Cabai
+          </option>
+
+          <option value="Bawang Daun">
+            Bawang Daun
+          </option>
+
+          <option value="Tomat">
+            Tomat
+          </option>
+
+          <option value="Lainnya">
+            Lainnya
+          </option>
+
         </select>
+
       </div>
+
 
       <div
         id="customPlantBox"
         class="field hidden"
       >
+
         <label for="customPlant">
           Nama Tanaman
         </label>
@@ -763,9 +1194,12 @@
           type="text"
           placeholder="Masukkan nama tanaman"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="activity">
           Kegiatan
         </label>
@@ -775,9 +1209,12 @@
           type="text"
           placeholder="Contoh: Penyiraman"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="date">
           Tanggal
         </label>
@@ -786,9 +1223,12 @@
           id="date"
           type="date"
         />
+
       </div>
 
+
       <div class="field">
+
         <label for="detail">
           Detail
         </label>
@@ -797,32 +1237,58 @@
           id="detail"
           placeholder="Detail kegiatan..."
         ></textarea>
+
       </div>
 
+
       <div class="field">
+
         <label for="repeat">
           Pengulangan
         </label>
 
         <select id="repeat">
-          <option value="none">Tidak berulang</option>
-          <option value="daily">Setiap hari</option>
-          <option value="weekly">Setiap minggu</option>
-          <option value="biweekly">Setiap 2 minggu</option>
-          <option value="monthly">Setiap bulan</option>
-          <option value="custom">Interval khusus</option>
+
+          <option value="none">
+            Tidak berulang
+          </option>
+
+          <option value="daily">
+            Setiap hari
+          </option>
+
+          <option value="weekly">
+            Setiap minggu
+          </option>
+
+          <option value="biweekly">
+            Setiap 2 minggu
+          </option>
+
+          <option value="monthly">
+            Setiap bulan
+          </option>
+
+          <option value="custom">
+            Interval khusus
+          </option>
+
         </select>
+
       </div>
+
 
       <div
         id="repeatOptions"
         class="field"
       ></div>
 
+
       <div
         id="customIntervalBox"
         class="field hidden"
       >
+
         <label for="repeatDays">
           Interval (hari)
         </label>
@@ -837,9 +1303,12 @@
         <div class="field-hint">
           Contoh: 3 berarti berulang setiap 3 hari.
         </div>
+
       </div>
 
+
       <div class="field">
+
         <label for="repeatTime">
           Waktu Pengingat
         </label>
@@ -852,9 +1321,12 @@
         <div class="field-hint">
           Isi waktu jika ingin mendapatkan notifikasi.
         </div>
+
       </div>
 
+
       <div class="modal-actions">
+
         <button
           class="btn btn-secondary"
           onclick="closeModal()"
@@ -862,38 +1334,52 @@
           Batal
         </button>
 
+
         <button
           class="btn btn-primary"
           onclick="addTask()"
         >
           Simpan Jadwal
         </button>
+
       </div>
 
     </div>
+
   </div>
 
 
-  <script>
-    /* =========================================================
-       DATA
-       Jangan ubah struktur ini karena dipakai oleh sistem
-       notifikasi native.
-    ========================================================= */
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
 
-    const taskKey = 'jadwalTaniTasks';
-    const farmKey = 'jadwalTaniFarms';
-    const completedKey = 'jadwalTaniCompleted';
+  <script>
+
+    /* =========================================
+       DATA
+    ========================================== */
+
+    const taskKey =
+      'jadwalTaniTasks';
+
+    const farmKey =
+      'jadwalTaniFarms';
+
+    const completedKey =
+      'jadwalTaniCompleted';
+
 
     let tasks =
       JSON.parse(
         localStorage.getItem(taskKey) || '[]'
       );
 
+
     let farms =
       JSON.parse(
         localStorage.getItem(farmKey) || '[]'
       );
+
 
     let completed =
       JSON.parse(
@@ -901,23 +1387,27 @@
       );
 
 
-    /* =========================================================
+    /* =========================================
        HELPER
-    ========================================================= */
+    ========================================== */
 
     function localDateString(date) {
 
-      const y = date.getFullYear();
+      const y =
+        date.getFullYear();
 
       const m =
-        String(date.getMonth() + 1)
-          .padStart(2, '0');
+        String(
+          date.getMonth() + 1
+        ).padStart(2, '0');
 
       const d =
-        String(date.getDate())
-          .padStart(2, '0');
+        String(
+          date.getDate()
+        ).padStart(2, '0');
 
       return `${y}-${m}-${d}`;
+
     }
 
 
@@ -930,10 +1420,15 @@
 
     function formatDisplayDate(dateString) {
 
-      if (!dateString) return '-';
+      if (!dateString) {
+        return '-';
+      }
 
       const d =
-        new Date(dateString + 'T00:00:00');
+        new Date(
+          dateString +
+          'T00:00:00'
+        );
 
       return d.toLocaleDateString(
         'id-ID',
@@ -944,6 +1439,7 @@
           year: 'numeric'
         }
       );
+
     }
 
 
@@ -986,30 +1482,39 @@
     }
 
 
-    /* =========================================================
+    /* =========================================
        OCCURRENCES
-       BAGIAN INI DIPERTAHANKAN DENGAN FORMAT LAMA.
-    ========================================================= */
+    ========================================== */
 
-    function taskOccurrences(t, days = 60) {
+    function taskOccurrences(
+      t,
+      days = 60
+    ) {
 
       const result = [];
 
-      if (!t.date) return result;
-
-      const start =
-        new Date(
-          t.date + 'T00:00:00'
-        );
-
-      if (isNaN(start.getTime())) {
+      if (!t.date) {
         return result;
       }
 
-      const today =
-        new Date();
 
-      today.setHours(0, 0, 0, 0);
+      const start =
+        new Date(
+          t.date +
+          'T00:00:00'
+        );
+
+
+      if (
+        isNaN(
+          start.getTime()
+        )
+      ) {
+
+        return result;
+
+      }
+
 
       for (
         let offset = 0;
@@ -1020,7 +1525,14 @@
         const d =
           new Date(start);
 
+        d.setDate(
+          start.getDate() +
+          offset
+        );
+
+
         let shouldAdd = false;
+
 
         switch (t.repeat) {
 
@@ -1059,7 +1571,8 @@
           case 'monthly':
 
             shouldAdd =
-              d.getDate() === start.getDate();
+              d.getDate() ===
+              start.getDate();
 
             break;
 
@@ -1067,7 +1580,9 @@
           case 'custom':
 
             const interval =
-              Number(t.repeatDays) || 1;
+              Number(
+                t.repeatDays
+              ) || 1;
 
             shouldAdd =
               offset % interval === 0;
@@ -1076,42 +1591,47 @@
 
         }
 
+
         if (!shouldAdd) {
-
-          d.setDate(
-            start.getDate() + offset
-          );
-
           continue;
         }
 
-        d.setDate(
-          start.getDate() + offset
-        );
 
         result.push({
 
           task: t,
 
-          date: formatLocalDate(d),
+          date:
+            formatLocalDate(d),
 
-          time: t.time || ''
+          time:
+            t.time || ''
 
         });
 
-        if (t.repeat === 'none') {
+
+        if (
+          t.repeat === 'none'
+        ) {
+
           break;
+
         }
 
       }
 
+
       return result;
+
     }
 
 
-    function allOccurrences(days = 60) {
+    function allOccurrences(
+      days = 60
+    ) {
 
       const out = [];
+
 
       tasks.forEach(
         (t, i) => {
@@ -1132,6 +1652,7 @@
         }
       );
 
+
       out.sort(
         (a, b) => {
 
@@ -1145,19 +1666,23 @@
             ' ' +
             b.time;
 
-          return aa.localeCompare(bb);
+          return aa.localeCompare(
+            bb
+          );
 
         }
       );
 
+
       return out;
+
     }
 
 
-    /* =========================================================
+    /* =========================================
        NOTIFICATION SYNC
-       JANGAN UBAH BAGIAN INI.
-    ========================================================= */
+       BAGIAN INI JANGAN DIUBAH.
+    ========================================== */
 
     function syncNativeReminderNotifications() {
 
@@ -1170,18 +1695,25 @@
 
       }
 
+
       const upcoming =
         allOccurrences(60)
-          .filter(x => {
+          .filter(
+            x => {
 
-            const completedId =
-              x.index +
-              '|' +
-              x.date;
+              const completedId =
+                x.index +
+                '|' +
+                x.date;
 
-            return !completed[completedId];
 
-          });
+              return !completed[
+                completedId
+              ];
+
+            }
+          );
+
 
       window.syncNativeNotifications(
         upcoming
@@ -1190,19 +1722,26 @@
     }
 
 
-    /* =========================================================
-       TAMPILAN HARI INI
-    ========================================================= */
+    /* =========================================
+       HARI INI
+    ========================================== */
 
     function renderToday() {
 
       const el =
-        document.getElementById('today');
+        document.getElementById(
+          'today'
+        );
 
-      if (!el) return;
+
+      if (!el) {
+        return;
+      }
+
 
       const now =
         new Date();
+
 
       el.textContent =
         now.toLocaleDateString(
@@ -1218,9 +1757,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================================
        BUDIDAYA
-    ========================================================= */
+    ========================================== */
 
     function openCultivation() {
 
@@ -1229,12 +1768,17 @@
           'cultivationModal'
         );
 
-      modal.classList.add('show');
+
+      modal.classList.add(
+        'show'
+      );
+
 
       const date =
         document.getElementById(
           'farmDate'
         );
+
 
       if (!date.value) {
 
@@ -1252,7 +1796,9 @@
         .getElementById(
           'cultivationModal'
         )
-        .classList.remove('show');
+        .classList.remove(
+          'show'
+        );
 
     }
 
@@ -1261,50 +1807,73 @@
 
       const name =
         document
-          .getElementById('farmName')
+          .getElementById(
+            'farmName'
+          )
           .value
           .trim();
+
 
       let plant =
         document
-          .getElementById('farmPlant')
+          .getElementById(
+            'farmPlant'
+          )
           .value;
+
 
       const customPlant =
         document
-          .getElementById('farmCustomPlant')
+          .getElementById(
+            'farmCustomPlant'
+          )
           .value
           .trim();
+
 
       if (
         plant === 'Lainnya' &&
         customPlant
       ) {
 
-        plant = customPlant;
+        plant =
+          customPlant;
 
       }
 
+
       const date =
         document
-          .getElementById('farmDate')
+          .getElementById(
+            'farmDate'
+          )
           .value;
+
 
       const area =
         document
-          .getElementById('farmArea')
+          .getElementById(
+            'farmArea'
+          )
           .value;
+
 
       const qty =
         document
-          .getElementById('farmQty')
+          .getElementById(
+            'farmQty'
+          )
           .value;
+
 
       const note =
         document
-          .getElementById('farmNote')
+          .getElementById(
+            'farmNote'
+          )
           .value
           .trim();
+
 
       if (!name) {
 
@@ -1316,6 +1885,7 @@
 
       }
 
+
       if (!date) {
 
         alert(
@@ -1325,6 +1895,7 @@
         return;
 
       }
+
 
       farms.push({
 
@@ -1342,26 +1913,39 @@
 
       });
 
+
       saveFarms();
 
       renderFarms();
 
       closeCultivation();
 
-      document
-        .getElementById('farmName')
-        .value = '';
 
       document
-        .getElementById('farmArea')
+        .getElementById(
+          'farmName'
+        )
         .value = '';
 
-      document
-        .getElementById('farmQty')
-        .value = '';
 
       document
-        .getElementById('farmNote')
+        .getElementById(
+          'farmArea'
+        )
+        .value = '';
+
+
+      document
+        .getElementById(
+          'farmQty'
+        )
+        .value = '';
+
+
+      document
+        .getElementById(
+          'farmNote'
+        )
         .value = '';
 
     }
@@ -1379,7 +1963,12 @@
 
       }
 
-      farms.splice(i, 1);
+
+      farms.splice(
+        i,
+        1
+      );
+
 
       saveFarms();
 
@@ -1388,18 +1977,36 @@
     }
 
 
-    function calculateAge(startDate) {
+    function calculateAge(
+      startDate
+    ) {
 
       const start =
         new Date(
-          startDate + 'T00:00:00'
+          startDate +
+          'T00:00:00'
         );
+
 
       const now =
         new Date();
 
-      start.setHours(0, 0, 0, 0);
-      now.setHours(0, 0, 0, 0);
+
+      start.setHours(
+        0,
+        0,
+        0,
+        0
+      );
+
+
+      now.setHours(
+        0,
+        0,
+        0,
+        0
+      );
+
 
       const diff =
         Math.floor(
@@ -1409,6 +2016,7 @@
           ) /
           86400000
         );
+
 
       return Math.max(
         1,
@@ -1425,26 +2033,31 @@
           'farms'
         );
 
+
       const count =
         document.getElementById(
           'farmCount'
         );
 
+
       count.textContent =
         farms.length;
+
 
       if (!farms.length) {
 
         container.innerHTML = `
           <div class="empty">
-            Belum ada budidaya. Mulai tambahkan
-            tanaman yang sedang kamu kelola.
+            Belum ada budidaya.
+            Mulai tambahkan tanaman
+            yang sedang kamu kelola.
           </div>
         `;
 
         return;
 
       }
+
 
       container.innerHTML =
         farms
@@ -1456,20 +2069,25 @@
                   f.date
                 );
 
+
               return `
+
                 <div class="farm-item">
 
                   <div class="farm-name">
                     ${escapeHtml(f.name)}
                   </div>
 
+
                   <div class="farm-plant">
                     ${escapeHtml(f.plant)}
                   </div>
 
+
                   <div class="farm-info">
 
                     <div class="info-box">
+
                       <div class="info-label">
                         Umur
                       </div>
@@ -1477,9 +2095,12 @@
                       <div class="info-value">
                         Hari ke-${age}
                       </div>
+
                     </div>
 
+
                     <div class="info-box">
+
                       <div class="info-label">
                         Mulai
                       </div>
@@ -1487,29 +2108,54 @@
                       <div class="info-value">
                         ${formatDisplayDate(f.date)}
                       </div>
+
                     </div>
 
+
                     <div class="info-box">
+
                       <div class="info-label">
                         Luas
                       </div>
 
                       <div class="info-value">
-                        ${f.area ? escapeHtml(String(f.area)) + ' m²' : '-'}
+                        ${
+                          f.area
+                            ? escapeHtml(
+                                String(
+                                  f.area
+                                )
+                              ) +
+                              ' m²'
+                            : '-'
+                        }
                       </div>
+
                     </div>
 
+
                     <div class="info-box">
+
                       <div class="info-label">
                         Jumlah
                       </div>
 
                       <div class="info-value">
-                        ${f.qty ? escapeHtml(String(f.qty)) : '-'}
+                        ${
+                          f.qty
+                            ? escapeHtml(
+                                String(
+                                  f.qty
+                                )
+                              )
+                            : '-'
+                        }
                       </div>
+
                     </div>
 
                   </div>
+
 
                   ${
                     f.note
@@ -1520,6 +2166,7 @@
                       `
                       : ''
                   }
+
 
                   <div class="schedule-actions">
 
@@ -1533,6 +2180,7 @@
                   </div>
 
                 </div>
+
               `;
 
             }
@@ -1542,9 +2190,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================================
        MODAL JADWAL
-    ========================================================= */
+    ========================================== */
 
     function openModal() {
 
@@ -1553,12 +2201,17 @@
           'modal'
         );
 
-      modal.classList.add('show');
+
+      modal.classList.add(
+        'show'
+      );
+
 
       const date =
         document.getElementById(
           'date'
         );
+
 
       if (!date.value) {
 
@@ -1573,8 +2226,12 @@
     function closeModal() {
 
       document
-        .getElementById('modal')
-        .classList.remove('show');
+        .getElementById(
+          'modal'
+        )
+        .classList.remove(
+          'show'
+        );
 
     }
 
@@ -1583,55 +2240,71 @@
 
       let selected =
         document
-          .getElementById('plant')
+          .getElementById(
+            'plant'
+          )
           .value;
+
 
       const custom =
         document
-          .getElementById('customPlant')
+          .getElementById(
+            'customPlant'
+          )
           .value
           .trim();
+
 
       if (
         selected === 'Lainnya' &&
         custom
       ) {
 
-        selected = custom;
+        selected =
+          custom;
 
       }
+
 
       const activityEl =
         document.getElementById(
           'activity'
         );
 
+
       const selectedDate =
         document.getElementById(
           'date'
         ).value;
+
 
       const detailEl =
         document.getElementById(
           'detail'
         );
 
+
       const r =
         document.getElementById(
           'repeat'
         ).value;
+
 
       const repeatTimeEl =
         document.getElementById(
           'repeatTime'
         );
 
+
       const repeatDaysEl =
         document.getElementById(
           'repeatDays'
         );
 
-      if (!activityEl.value.trim()) {
+
+      if (
+        !activityEl.value.trim()
+      ) {
 
         alert(
           'Kegiatan belum diisi.'
@@ -1640,6 +2313,7 @@
         return;
 
       }
+
 
       if (!selectedDate) {
 
@@ -1651,9 +2325,16 @@
 
       }
 
+
+      /*
+        FORMAT TASK INI DIPERTAHANKAN
+        UNTUK KOMPATIBILITAS NOTIFIKASI.
+      */
+
       const x = {
 
-        plant: selected,
+        plant:
+          selected,
 
         activity:
           activityEl.value,
@@ -1679,7 +2360,9 @@
 
       };
 
+
       tasks.push(x);
+
 
       saveTasks();
 
@@ -1691,19 +2374,33 @@
 
       closeModal();
 
+
       activityEl.value = '';
+
       detailEl.value = '';
+
       repeatTimeEl.value = '';
+
       repeatDaysEl.value = '1';
 
     }
 
 
-    function completeTask(i, date) {
+    /* =========================================
+       SELESAI
+    ========================================== */
+
+    function completeTask(
+      i,
+      date
+    ) {
 
       completed[
-        i + '|' + date
+        i +
+        '|' +
+        date
       ] = true;
+
 
       saveCompleted();
 
@@ -1715,6 +2412,10 @@
 
     }
 
+
+    /* =========================================
+       HAPUS JADWAL
+    ========================================== */
 
     function removeTask(i) {
 
@@ -1728,7 +2429,12 @@
 
       }
 
-      tasks.splice(i, 1);
+
+      tasks.splice(
+        i,
+        1
+      );
+
 
       saveTasks();
 
@@ -1741,9 +2447,9 @@
     }
 
 
-    /* =========================================================
-       RENDER JADWAL HARI INI
-    ========================================================= */
+    /* =========================================
+       JADWAL HARI INI
+    ========================================== */
 
     function renderTasks() {
 
@@ -1752,31 +2458,37 @@
           'tasks'
         );
 
+
       const today =
         todayString();
 
+
       const list =
-        allOccurrences(0)
+        allOccurrences(60)
           .filter(
             x =>
               x.date === today &&
               !completed[
-                x.index + '|' + x.date
+                x.index +
+                '|' +
+                x.date
               ]
           );
+
 
       if (!list.length) {
 
         container.innerHTML = `
           <div class="empty">
-            Belum ada kegiatan yang dijadwalkan
-            untuk hari ini.
+            Belum ada kegiatan yang
+            dijadwalkan untuk hari ini.
           </div>
         `;
 
         return;
 
       }
+
 
       container.innerHTML =
         list
@@ -1786,7 +2498,9 @@
               const t =
                 x.task;
 
+
               return `
+
                 <div class="schedule-item">
 
                   <div class="schedule-top">
@@ -1794,34 +2508,47 @@
                     <div>
 
                       <div class="schedule-title">
-                        ${escapeHtml(t.activity)}
+                        ${escapeHtml(
+                          t.activity
+                        )}
                       </div>
 
                       <div class="schedule-plant">
-                        ${escapeHtml(t.plant)}
+                        ${escapeHtml(
+                          t.plant
+                        )}
                       </div>
 
                     </div>
 
+
                     <div class="schedule-time">
+
                       ${
                         x.time
-                          ? escapeHtml(x.time)
+                          ? escapeHtml(
+                              x.time
+                            )
                           : 'Hari ini'
                       }
+
                     </div>
 
                   </div>
+
 
                   ${
                     t.detail
                       ? `
                         <div class="schedule-detail">
-                          ${escapeHtml(t.detail)}
+                          ${escapeHtml(
+                            t.detail
+                          )}
                         </div>
                       `
                       : ''
                   }
+
 
                   <div class="schedule-actions">
 
@@ -1835,16 +2562,20 @@
                       Selesai
                     </button>
 
+
                     <button
                       class="btn btn-danger btn-small"
-                      onclick="removeTask(${x.index})"
+                      onclick="removeTask(
+                        ${x.index}
+                      )"
                     >
-                      Hapus
+                      Hapus Jadwal
                     </button>
 
                   </div>
 
                 </div>
+
               `;
 
             }
@@ -1854,9 +2585,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================================
        JADWAL MENDATANG
-    ========================================================= */
+    ========================================== */
 
     function renderUpcoming() {
 
@@ -1865,32 +2596,42 @@
           'upcoming'
         );
 
+
       const today =
         todayString();
 
+
       const list =
         allOccurrences(30)
-          .filter(x => {
+          .filter(
+            x => {
 
-            if (
-              x.date === today
-            ) {
+              if (
+                x.date === today
+              ) {
 
-              return false;
+                return false;
+
+              }
+
+
+              const completedId =
+                x.index +
+                '|' +
+                x.date;
+
+
+              return !completed[
+                completedId
+              ];
 
             }
+          )
+          .slice(
+            0,
+            10
+          );
 
-            const completedId =
-              x.index +
-              '|' +
-              x.date;
-
-            return !completed[
-              completedId
-            ];
-
-          })
-          .slice(0, 10);
 
       if (!list.length) {
 
@@ -1904,6 +2645,7 @@
 
       }
 
+
       container.innerHTML =
         list
           .map(
@@ -1912,7 +2654,9 @@
               const t =
                 x.task;
 
+
               return `
+
                 <div class="schedule-item">
 
                   <div class="schedule-top">
@@ -1920,39 +2664,79 @@
                     <div>
 
                       <div class="schedule-title">
-                        ${escapeHtml(t.activity)}
+                        ${escapeHtml(
+                          t.activity
+                        )}
                       </div>
 
                       <div class="schedule-plant">
-                        ${escapeHtml(t.plant)}
+                        ${escapeHtml(
+                          t.plant
+                        )}
                       </div>
 
                     </div>
 
+
                     <div class="schedule-time">
+
                       ${
                         x.time
-                          ? escapeHtml(x.time)
+                          ? escapeHtml(
+                              x.time
+                            )
                           : ''
                       }
+
                     </div>
 
                   </div>
 
+
                   <div class="schedule-detail">
 
-                    ${formatDisplayDate(x.date)}
+                    ${formatDisplayDate(
+                      x.date
+                    )}
 
                     ${
                       t.detail
                         ? ' • ' +
-                          escapeHtml(t.detail)
+                          escapeHtml(
+                            t.detail
+                          )
                         : ''
                     }
 
                   </div>
 
+
+                  <div class="schedule-actions">
+
+                    <button
+                      class="btn btn-primary btn-small"
+                      onclick="completeTask(
+                        ${x.index},
+                        '${x.date}'
+                      )"
+                    >
+                      Selesai
+                    </button>
+
+
+                    <button
+                      class="btn btn-danger btn-small"
+                      onclick="removeTask(
+                        ${x.index}
+                      )"
+                    >
+                      Hapus Jadwal
+                    </button>
+
+                  </div>
+
                 </div>
+
               `;
 
             }
@@ -1962,9 +2746,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================================
        CATATAN
-    ========================================================= */
+    ========================================== */
 
     function saveNotes() {
 
@@ -1973,10 +2757,12 @@
           'notes'
         ).value;
 
+
       localStorage.setItem(
         'jadwalTaniNotes',
         notes
       );
+
 
       alert(
         'Catatan berhasil disimpan.'
@@ -1992,36 +2778,47 @@
           'jadwalTaniNotes'
         ) || '';
 
+
       document.getElementById(
         'notes'
-      ).value = notes;
+      ).value =
+        notes;
 
     }
 
 
-    /* =========================================================
-       HTML SAFETY
-    ========================================================= */
+    /* =========================================
+       ESCAPE HTML
+    ========================================== */
 
-    function escapeHtml(value) {
+    function escapeHtml(
+      value
+    ) {
 
-      return String(value ?? '')
+      return String(
+        value ?? ''
+      )
+
         .replace(
           /&/g,
           '&amp;'
         )
+
         .replace(
           /</g,
           '&lt;'
         )
+
         .replace(
           />/g,
           '&gt;'
         )
+
         .replace(
           /"/g,
           '&quot;'
         )
+
         .replace(
           /'/g,
           '&#039;'
@@ -2030,12 +2827,14 @@
     }
 
 
-    /* =========================================================
-       SELECT TANAMAN
-    ========================================================= */
+    /* =========================================
+       TANAMAN - JADWAL
+    ========================================== */
 
     document
-      .getElementById('plant')
+      .getElementById(
+        'plant'
+      )
       .addEventListener(
         'change',
         function () {
@@ -2045,6 +2844,7 @@
               'customPlantBox'
             );
 
+
           if (
             this.value === 'Lainnya'
           ) {
@@ -2065,8 +2865,14 @@
       );
 
 
+    /* =========================================
+       TANAMAN - BUDIDAYA
+    ========================================== */
+
     document
-      .getElementById('farmPlant')
+      .getElementById(
+        'farmPlant'
+      )
       .addEventListener(
         'change',
         function () {
@@ -2076,6 +2882,7 @@
               'farmCustomPlantBox'
             );
 
+
           if (
             this.value === 'Lainnya'
           ) {
@@ -2096,12 +2903,14 @@
       );
 
 
-    /* =========================================================
-       PILIH JENIS PENGULANGAN
-    ========================================================= */
+    /* =========================================
+       PENGULANGAN
+    ========================================== */
 
     document
-      .getElementById('repeat')
+      .getElementById(
+        'repeat'
+      )
       .addEventListener(
         'change',
         function () {
@@ -2110,6 +2919,7 @@
             document.getElementById(
               'customIntervalBox'
             );
+
 
           if (
             this.value === 'custom'
@@ -2131,9 +2941,9 @@
       );
 
 
-    /* =========================================================
-       TUTUP MODAL KETIKA KLIK AREA GELAP
-    ========================================================= */
+    /* =========================================
+       TUTUP MODAL
+    ========================================== */
 
     document
       .getElementById(
@@ -2175,9 +2985,9 @@
       );
 
 
-    /* =========================================================
+    /* =========================================
        INIT
-    ========================================================= */
+    ========================================== */
 
     function initApp() {
 
@@ -2197,9 +3007,9 @@
     initApp();
 
 
-    /* =========================================================
+    /* =========================================
        SERVICE WORKER
-    ========================================================= */
+    ========================================== */
 
     if (
       'serviceWorker' in navigator
@@ -2210,7 +3020,9 @@
         function () {
 
           navigator.serviceWorker
-            .register('./sw.js')
+            .register(
+              './sw.js'
+            )
             .catch(
               function (err) {
 
@@ -2226,16 +3038,18 @@
       );
 
     }
+
   </script>
 
 
-  <!--
-    JANGAN DIHAPUS.
-    Ini bridge Capacitor Local Notifications
-    dari versi yang notifikasinya sudah terbukti bekerja.
-  -->
+  <!-- =========================================
+       CAPACITOR NOTIFICATIONS
+       JANGAN DIHAPUS
+  ========================================== -->
 
-  <script src="./capacitor-notifications.js"></script>
+  <script
+    src="./capacitor-notifications.js"
+  ></script>
 
 </body>
 </html>
