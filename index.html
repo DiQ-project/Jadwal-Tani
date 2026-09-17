@@ -199,6 +199,22 @@ header{
   height:20px;
 }
 
+
+.permission-card{
+  margin-top:14px;
+  padding:13px;
+  border:1px solid #e3ebe1;
+  border-radius:14px;
+  background:#f8fbf7;
+}
+
+.permission-card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+
 .greeting{
   margin-top:23px;
 }
@@ -1074,12 +1090,8 @@ label{
           stroke="currentColor"
           stroke-width="2"
         >
-          <path
-            d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
-          />
-          <path
-            d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2.4v-.2a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 0 0 8.46 15a1.7 1.7 0 0 0-1.56-1.03H6.7v-2.4h.2A1.7 1.7 0 0 0 8.46 10a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.03-1.56V5h2.4v.2a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.7 1.7-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.03h.2v2.4h-.2A1.7 1.7 0 0 0 19.4 15Z"
-          />
+          <path d="M12 15.25a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/>
+          <path d="M19.43 15a1.65 1.65 0 0 0 .33 1.82l.04.04-1.98 1.98-.04-.04a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1.01 1.51V20h-2.8v-.02a1.65 1.65 0 0 0-1.01-1.51 1.65 1.65 0 0 0-1.82.33l-.04.04-1.98-1.98.04-.04A1.65 1.65 0 0 0 7.66 15a1.65 1.65 0 0 0-1.51-1.01H6v-2.8h.15a1.65 1.65 0 0 0 1.51-1.01 1.65 1.65 0 0 0-.33-1.82l-.04-.04 1.98-1.98.04.04a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.01-1.51V5h2.8v.2a1.65 1.65 0 0 0 1.01 1.51 1.65 1.65 0 0 0 1.82-.33l.04-.04 1.98 1.98-.04.04a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1.01H20v2.8h-.15A1.65 1.65 0 0 0 19.43 15Z"/>
         </svg>
 
       </button>
@@ -1693,6 +1705,33 @@ label{
 
     </div>
 
+
+    <div class="setting-item">
+      <div class="setting-row">
+        <div class="setting-left">
+          <div class="iconbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="3" width="14" height="18" rx="2"/>
+              <path d="M9 7h6M9 11h6M9 15h3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="setting-title">Izin &amp; Aktivasi</div>
+            <div class="setting-desc">Kelola izin notifikasi dan aktivitas latar belakang aplikasi.</div>
+          </div>
+        </div>
+      </div>
+      <div class="permission-card">
+        <div class="setting-title">Izin Notifikasi</div>
+        <div class="setting-desc">Izinkan Jadwal Tani menampilkan pengingat kegiatan.</div>
+        <button class="button primary" onclick="openNotificationPermissionSettings()" style="width:100%;margin-top:12px">Buka Pengaturan Notifikasi</button>
+      </div>
+      <div class="permission-card">
+        <div class="setting-title">Aktivitas Latar Belakang</div>
+        <div class="setting-desc">Atur baterai agar aplikasi tetap dapat menjalankan pengingat saat tidak sedang dibuka.</div>
+        <button class="button secondary" onclick="openBackgroundPermissionSettings()" style="width:100%;margin-top:12px">Buka Pengaturan Baterai</button>
+      </div>
+    </div>
 
     <div class="setting-item">
 
@@ -4400,6 +4439,23 @@ document
 /* ================================================= */
 /* JALANKAN APLIKASI */
 /* ================================================= */
+
+
+function openNotificationPermissionSettings(){
+  if(typeof window.openNotificationSettings === 'function'){
+    window.openNotificationSettings();
+    return;
+  }
+  alert('Silakan buka Pengaturan Android → Aplikasi → Jadwal Tani → Notifikasi, lalu aktifkan izin notifikasi secara manual.');
+}
+
+function openBackgroundPermissionSettings(){
+  if(typeof window.openBatterySettings === 'function'){
+    window.openBatterySettings();
+    return;
+  }
+  alert('Silakan buka Pengaturan Android → Aplikasi → Jadwal Tani → Baterai, lalu pilih Tidak dibatasi atau izinkan aktivitas latar belakang.');
+}
 
 registerSW();
 
