@@ -199,22 +199,6 @@ header{
   height:20px;
 }
 
-
-.permission-card{
-  margin-top:14px;
-  padding:13px;
-  border:1px solid #e3ebe1;
-  border-radius:14px;
-  background:#f8fbf7;
-}
-
-.permission-card-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-
 .greeting{
   margin-top:23px;
 }
@@ -1022,6 +1006,248 @@ label{
 
 }
 
+
+/* ================================================= */
+/* POLISH + FITUR TAMBAHAN */
+/* ================================================= */
+
+.switch{
+  position:relative;
+  width:48px;
+  height:28px;
+  flex-shrink:0;
+}
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+.slider{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  background:#dfe6de;
+  transition:.2s;
+}
+.slider:before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  left:3px;
+  top:3px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 1px 4px #0002;
+  transition:.2s;
+}
+.switch input:checked + .slider{background:#2f7d32}
+.switch input:checked + .slider:before{transform:translateX(20px)}
+
+.note-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  padding:4px;
+  margin-bottom:13px;
+  background:#f4f7f1;
+  border-radius:12px;
+}
+.note-tab{
+  min-height:38px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#718071;
+  font-size:12px;
+  font-weight:700;
+}
+.note-tab.active{
+  background:#fff;
+  color:#2f7d32;
+  box-shadow:0 2px 7px #0000000a;
+}
+.note-tab span{
+  display:inline-flex;
+  min-width:20px;
+  height:20px;
+  align-items:center;
+  justify-content:center;
+  margin-left:4px;
+  padding:0 5px;
+  border-radius:10px;
+  background:#edf6ed;
+  color:#2f7d32;
+  font-size:10px;
+}
+.note-card{
+  border:1px solid #e9eee8;
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:10px;
+}
+.note-card:last-child{margin-bottom:0}
+.note-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.note-card-title{
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
+}
+.note-card-meta{
+  margin-top:4px;
+  color:#718071;
+  font-size:11px;
+}
+.note-card-content{
+  margin-top:10px;
+  color:#4f5d4f;
+  font-size:13px;
+  line-height:1.55;
+  white-space:pre-wrap;
+}
+.note-status{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#edf6ed;
+  color:#2f7d32;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.note-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+.note-actions button{flex:1}
+.empty-note{
+  padding:22px 12px;
+  text-align:center;
+  color:#718071;
+  font-size:12px;
+  line-height:1.5;
+}
+.background-help{
+  display:none;
+  margin-top:10px;
+  padding:10px 11px;
+  border-radius:11px;
+  background:#f7faf6;
+  color:#687568;
+  font-size:11px;
+  line-height:1.5;
+}
+.background-help.show{display:block}
+
+/* UI text tidak mudah terblok; input tetap bisa dipilih */
+body, header, .card, .bottom-nav, button, label,
+.setting-title, .setting-desc, .brand-title, .brand-subtitle,
+.greeting, .task-group-head, .task-title, .task-meta, .task-time,
+.upcoming-title, .upcoming-meta, .farm-name, .farm-meta{
+  -webkit-user-select:none;
+  user-select:none;
+}
+input, textarea, select{
+  -webkit-user-select:text;
+  user-select:text;
+}
+
+/* DARK MODE */
+body.dark-mode{
+  background:#111611;
+  color:#e8eee8;
+}
+body.dark-mode .card,
+body.dark-mode .modalbox{
+  background:#1b211b;
+  color:#e8eee8;
+}
+body.dark-mode .card-subtitle,
+body.dark-mode .setting-desc,
+body.dark-mode .task-meta,
+body.dark-mode .task-time,
+body.dark-mode .upcoming-meta,
+body.dark-mode .farm-meta,
+body.dark-mode .note-card-meta,
+body.dark-mode .note-card-content,
+body.dark-mode .empty,
+body.dark-mode .empty-note{
+  color:#aab6aa;
+}
+body.dark-mode .iconbox,
+body.dark-mode .activity-icon,
+body.dark-mode .today-icon{
+  background:#243424;
+  color:#69b96d;
+}
+body.dark-mode .secondary{
+  background:#273327;
+  color:#79c47d;
+}
+body.dark-mode .stat,
+body.dark-mode .note-info,
+body.dark-mode .background-help{
+  background:#202820;
+  color:#aab6aa;
+}
+body.dark-mode .task-group,
+body.dark-mode .task,
+body.dark-mode .upcoming,
+body.dark-mode .farm,
+body.dark-mode .setting-item,
+body.dark-mode .note-card{
+  border-color:#303830;
+}
+body.dark-mode .task-group-head{
+  background:#202720;
+  color:#e8eee8;
+}
+body.dark-mode .note-tabs{background:#202720}
+body.dark-mode .note-tab{color:#aab6aa}
+body.dark-mode .note-tab.active{
+  background:#2a332a;
+  color:#79c47d;
+}
+body.dark-mode .note-status{
+  background:#243424;
+  color:#79c47d;
+}
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea{
+  background:#202720;
+  color:#e8eee8;
+  border-color:#394439;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{color:#7f8b7f}
+body.dark-mode .bottom-nav{
+  background:#151b15ee;
+  border-color:#303830;
+}
+body.dark-mode .bottom-nav-inner{background:#1b211b}
+body.dark-mode .nav-button{color:#9aa69a}
+body.dark-mode .nav-button.active{
+  color:#79c47d;
+  background:#243424;
+}
+body.dark-mode .slider{background:#465146}
+body.dark-mode .small-button.secondary{
+  background:#273327;
+  color:#79c47d;
+}
+body.dark-mode .danger{
+  background:#352222;
+  color:#ff9a9a;
+}
+
 </style>
 
 </head>
@@ -1044,22 +1270,7 @@ label{
 
         <div class="brand-mark">
 
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M12 20V10"
-            />
-            <path
-              d="M12 14c-4 0-7-2-7-6 4 0 7 2 7 6Z"
-            />
-            <path
-              d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7Z"
-            />
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
 
         </div>
 
@@ -1081,7 +1292,7 @@ label{
       <button
         class="settings-button"
         onclick="showPage('settings')"
-        aria-label="Pengaturan"
+        aria-label="Menu" title="Menu"
       >
 
         <svg
@@ -1090,8 +1301,12 @@ label{
           stroke="currentColor"
           stroke-width="2"
         >
-          <path d="M12 15.25a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/>
-          <path d="M19.43 15a1.65 1.65 0 0 0 .33 1.82l.04.04-1.98 1.98-.04-.04a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1.01 1.51V20h-2.8v-.02a1.65 1.65 0 0 0-1.01-1.51 1.65 1.65 0 0 0-1.82.33l-.04.04-1.98-1.98.04-.04A1.65 1.65 0 0 0 7.66 15a1.65 1.65 0 0 0-1.51-1.01H6v-2.8h.15a1.65 1.65 0 0 0 1.51-1.01 1.65 1.65 0 0 0-.33-1.82l-.04-.04 1.98-1.98.04.04a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.01-1.51V5h2.8v.2a1.65 1.65 0 0 0 1.01 1.51 1.65 1.65 0 0 0 1.82-.33l.04-.04 1.98 1.98-.04.04a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1.01H20v2.8h-.15A1.65 1.65 0 0 0 19.43 15Z"/>
+          <path
+            d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+          />
+          <path
+            d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2.4v-.2a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 0 0 8.46 15a1.7 1.7 0 0 0-1.56-1.03H6.7v-2.4h.2A1.7 1.7 0 0 0 8.46 10a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.03-1.56V5h2.4v.2a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.7 1.7-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.03h.2v2.4h-.2A1.7 1.7 0 0 0 19.4 15Z"
+          />
         </svg>
 
       </button>
@@ -1315,31 +1530,6 @@ label{
     <div id="homeTasks"></div>
 
   </div>
-
-
-  <div class="card">
-
-    <div class="section-head">
-
-      <div>
-
-        <h3 class="card-title">
-          Jadwal Mendatang
-        </h3>
-
-        <p class="card-subtitle">
-          Kegiatan beberapa hari ke depan
-        </p>
-
-      </div>
-
-    </div>
-
-    <div id="homeUpcoming"></div>
-
-  </div>
-
-
 </section>
 
 
@@ -1495,64 +1685,43 @@ label{
   class="page"
 >
 
-
   <div class="card">
 
     <div class="section-head">
 
       <div>
-
-        <h2 class="card-title">
-          Catatan Kebun
-        </h2>
-
+        <h2 class="card-title">Catatan Kebun</h2>
         <p class="card-subtitle">
-          Simpan pengamatan penting dari kebunmu.
+          Simpan pengamatan, masalah, dan perkembangan kebunmu.
         </p>
-
       </div>
 
-      <div class="iconbox">
-
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
-          <path d="M14 2v6h6"/>
-          <path d="M8 13h8"/>
-          <path d="M8 17h6"/>
+      <button
+        class="small-button primary"
+        onclick="openNoteModal()"
+        aria-label="Tambah catatan"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14"/>
+          <path d="M5 12h14"/>
         </svg>
-
-      </div>
+        Tambah
+      </button>
 
     </div>
 
-
-    <div class="note-info">
-      Catatan tersimpan di perangkat ini dan tetap
-      tersedia ketika aplikasi digunakan tanpa internet.
+    <div class="note-tabs">
+      <button id="noteTabActive" class="note-tab active" onclick="setNoteFilter('active')">
+        Aktif <span id="activeNoteCount">0</span>
+      </button>
+      <button id="noteTabCompleted" class="note-tab" onclick="setNoteFilter('completed')">
+        Terselesaikan <span id="completedNoteCount">0</span>
+      </button>
     </div>
 
-
-    <textarea
-      id="notes"
-      placeholder="Contoh: Stroberi Blok A mulai berbunga..."
-    ></textarea>
-
-
-    <button
-      class="button primary"
-      onclick="saveNotes()"
-      style="width:100%"
-    >
-      Simpan Catatan
-    </button>
+    <div id="notesList"></div>
 
   </div>
-
 
 </section>
 
@@ -1647,6 +1816,88 @@ label{
         <div class="setting-left">
 
           <div class="iconbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v2"/>
+              <path d="M12 19v2"/>
+              <path d="m4.93 4.93 1.42 1.42"/>
+              <path d="m17.65 17.65 1.42 1.42"/>
+              <path d="M3 12h2"/>
+              <path d="M19 12h2"/>
+              <path d="m4.93 19.07 1.42-1.42"/>
+              <path d="m17.65 6.35 1.42-1.42"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="setting-title">Mode Gelap</div>
+            <div class="setting-desc">
+              Gunakan tampilan gelap untuk kenyamanan mata.
+            </div>
+          </div>
+
+        </div>
+
+        <label class="switch" aria-label="Mode Gelap">
+          <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+          <span class="slider"></span>
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <div class="setting-item">
+
+      <div class="setting-row">
+
+        <div class="setting-left">
+
+          <div class="iconbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16"/>
+              <path d="M5 8h14"/>
+              <path d="M7 8l-2 5h4L7 8Z"/>
+              <path d="M17 8l-2 5h4l-2-5Z"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="setting-title">Aktivitas Latar Belakang</div>
+            <div class="setting-desc">
+              Izinkan aktivitas latar belakang agar pengingat jadwal tetap berjalan dan notifikasi dapat diterima saat aplikasi tidak sedang dibuka.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="button secondary"
+        onclick="openBackgroundSettingsFallback()"
+        style="width:100%;margin-top:12px"
+      >
+        Atur Aktivitas Latar Belakang
+      </button>
+
+      <div class="background-help" id="backgroundHelp">
+        Jika pengaturan tidak dapat dibuka otomatis, buka
+        <strong>Pengaturan → Aplikasi → Jadwal Tani → Baterai</strong>
+        lalu izinkan aktivitas latar belakang.
+      </div>
+
+    </div>
+
+
+    <div class="setting-item">
+
+      <div class="setting-row">
+
+        <div class="setting-left">
+
+          <div class="iconbox">
 
             <svg
               viewBox="0 0 24 24"
@@ -1705,33 +1956,6 @@ label{
 
     </div>
 
-
-    <div class="setting-item">
-      <div class="setting-row">
-        <div class="setting-left">
-          <div class="iconbox">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="5" y="3" width="14" height="18" rx="2"/>
-              <path d="M9 7h6M9 11h6M9 15h3"/>
-            </svg>
-          </div>
-          <div>
-            <div class="setting-title">Izin &amp; Aktivasi</div>
-            <div class="setting-desc">Kelola izin notifikasi dan aktivitas latar belakang aplikasi.</div>
-          </div>
-        </div>
-      </div>
-      <div class="permission-card">
-        <div class="setting-title">Izin Notifikasi</div>
-        <div class="setting-desc">Izinkan Jadwal Tani menampilkan pengingat kegiatan.</div>
-        <button class="button primary" onclick="openNotificationPermissionSettings()" style="width:100%;margin-top:12px">Buka Pengaturan Notifikasi</button>
-      </div>
-      <div class="permission-card">
-        <div class="setting-title">Aktivitas Latar Belakang</div>
-        <div class="setting-desc">Atur baterai agar aplikasi tetap dapat menjalankan pengingat saat tidak sedang dibuka.</div>
-        <button class="button secondary" onclick="openBackgroundPermissionSettings()" style="width:100%;margin-top:12px">Buka Pengaturan Baterai</button>
-      </div>
-    </div>
 
     <div class="setting-item">
 
@@ -1909,6 +2133,42 @@ label{
   </div>
 
 </nav>
+
+
+<!-- ================================================= -->
+<!-- MODAL CATATAN -->
+<!-- ================================================= -->
+
+<div class="modal" id="noteModal">
+
+  <div class="modalbox">
+
+    <h2 class="modal-title" id="noteModalTitle">Catatan Baru</h2>
+
+    <p class="modal-subtitle">
+      Simpan masalah, pengamatan, atau perkembangan kebun.
+    </p>
+
+    <label>Judul Catatan</label>
+    <input id="noteTitle" placeholder="Contoh: Masalah Hama Stroberi">
+
+    <label>Tanggal</label>
+    <input type="date" id="noteDate">
+
+    <label>Tanaman (opsional)</label>
+    <input id="notePlant" placeholder="Contoh: Stroberi">
+
+    <label>Isi Catatan</label>
+    <textarea id="noteContent" rows="6" placeholder="Tuliskan apa yang terjadi di kebun..."></textarea>
+
+    <div class="modal-actions">
+      <button class="button secondary" onclick="closeNoteModal()">Batal</button>
+      <button class="button primary" onclick="saveNote()">Simpan Catatan</button>
+    </div>
+
+  </div>
+
+</div>
 
 
 <!-- ================================================= -->
@@ -2486,6 +2746,26 @@ function saveGreetingName(){
 /* ================================================= */
 /* UMUR TANAMAN */
 /* ================================================= */
+
+function applyDarkMode(){
+  const enabled = localStorage.getItem('jadwalTaniDarkMode') === '1';
+  document.body.classList.toggle('dark-mode', enabled);
+  const toggle = document.getElementById('darkModeToggle');
+  if(toggle) toggle.checked = enabled;
+}
+
+function toggleDarkMode(){
+  const toggle = document.getElementById('darkModeToggle');
+  const enabled = !!toggle.checked;
+  localStorage.setItem('jadwalTaniDarkMode', enabled ? '1' : '0');
+  applyDarkMode();
+}
+
+function openBackgroundSettingsFallback(){
+  const help = document.getElementById('backgroundHelp');
+  if(help) help.classList.add('show');
+  alert('Buka Pengaturan → Aplikasi → Jadwal Tani → Baterai, lalu izinkan aktivitas latar belakang.');
+}
 
 function ageDays(date){
 
@@ -3729,11 +4009,6 @@ function renderUpcoming(){
     html;
 
 
-  document.getElementById(
-    'homeUpcoming'
-  ).innerHTML =
-    html;
-
 }
 
 
@@ -4338,24 +4613,217 @@ function removeTask(i){
 /* CATATAN */
 /* ================================================= */
 
+const notesKeyV2 = 'jadwalTaniNotesV2';
+let noteFilter = 'active';
+let editingNoteId = null;
+
+function getNotesData(){
+  let notes = JSON.parse(localStorage.getItem(notesKeyV2) || '[]');
+  if(!Array.isArray(notes)) notes = [];
+
+  /* Migrasi catatan lama agar tidak hilang */
+  if(!notes.length){
+    const old = (localStorage.getItem('jadwalTaniNotes') || '').trim();
+    if(old){
+      notes = [{
+        id: Date.now(),
+        title: 'Catatan Lama',
+        date: getLocalDate(),
+        plant: '',
+        content: old,
+        status: 'active',
+        completedAt: null
+      }];
+      localStorage.setItem(notesKeyV2, JSON.stringify(notes));
+    }
+  }
+  return notes;
+}
+
+function setNotesData(notes){
+  localStorage.setItem(notesKeyV2, JSON.stringify(notes));
+}
+
+function openNoteModal(id=null){
+  editingNoteId = id;
+  const modal = document.getElementById('noteModal');
+  document.getElementById('noteModalTitle').textContent =
+    id === null ? 'Catatan Baru' : 'Edit Catatan';
+
+  if(id !== null){
+    const note = getNotesData().find(n => n.id === id);
+    if(!note) return;
+    document.getElementById('noteTitle').value = note.title || '';
+    document.getElementById('noteDate').value = note.date || getLocalDate();
+    document.getElementById('notePlant').value = note.plant || '';
+    document.getElementById('noteContent').value = note.content || '';
+  }else{
+    document.getElementById('noteTitle').value = '';
+    document.getElementById('noteDate').value = getLocalDate();
+    document.getElementById('notePlant').value = '';
+    document.getElementById('noteContent').value = '';
+  }
+  modal.classList.add('show');
+}
+
+function closeNoteModal(){
+  document.getElementById('noteModal').classList.remove('show');
+  editingNoteId = null;
+}
+
+function saveNote(){
+  const title = document.getElementById('noteTitle').value.trim();
+  const date = document.getElementById('noteDate').value || getLocalDate();
+  const plant = document.getElementById('notePlant').value.trim();
+  const content = document.getElementById('noteContent').value.trim();
+
+  if(!title){
+    alert('Judul catatan belum diisi.');
+    return;
+  }
+  if(!content){
+    alert('Isi catatan belum diisi.');
+    return;
+  }
+
+  const notes = getNotesData();
+
+  if(editingNoteId !== null){
+    const note = notes.find(n => n.id === editingNoteId);
+    if(note){
+      note.title = title;
+      note.date = date;
+      note.plant = plant;
+      note.content = content;
+    }
+  }else{
+    notes.unshift({
+      id: Date.now(),
+      title,
+      date,
+      plant,
+      content,
+      status: 'active',
+      completedAt: null
+    });
+  }
+
+  setNotesData(notes);
+  closeNoteModal();
+  renderNotes();
+}
+
+function setNoteFilter(filter){
+  noteFilter = filter;
+  document.getElementById('noteTabActive').classList.toggle('active', filter === 'active');
+  document.getElementById('noteTabCompleted').classList.toggle('active', filter === 'completed');
+  renderNotes();
+}
+
+function completeNote(id){
+  const notes = getNotesData();
+  const note = notes.find(n => n.id === id);
+  if(!note) return;
+
+  if(!confirm('Tandai catatan ini sebagai terselesaikan?')) return;
+
+  note.status = 'completed';
+  note.completedAt = getLocalDate();
+  setNotesData(notes);
+  renderNotes();
+}
+
+function reopenNote(id){
+  const notes = getNotesData();
+  const note = notes.find(n => n.id === id);
+  if(!note) return;
+
+  note.status = 'active';
+  note.completedAt = null;
+  setNotesData(notes);
+  renderNotes();
+}
+
+function deleteNote(id){
+  const notes = getNotesData();
+  if(!notes.some(n => n.id === id)) return;
+
+  if(!confirm('Hapus catatan ini secara permanen?')) return;
+
+  setNotesData(notes.filter(n => n.id !== id));
+  renderNotes();
+}
+
+function renderNotes(){
+  const notes = getNotesData();
+  const active = notes.filter(n => n.status !== 'completed');
+  const completed = notes.filter(n => n.status === 'completed');
+
+  document.getElementById('activeNoteCount').textContent = active.length;
+  document.getElementById('completedNoteCount').textContent = completed.length;
+
+  const visible = noteFilter === 'completed' ? completed : active;
+  const el = document.getElementById('notesList');
+
+  if(!visible.length){
+    el.innerHTML = `<div class="empty-note">${
+      noteFilter === 'completed'
+        ? 'Belum ada catatan yang terselesaikan.'
+        : 'Belum ada catatan aktif. Tambahkan catatan pertama dari kebunmu.'
+    }</div>`;
+    return;
+  }
+
+  el.innerHTML = visible.map(note => {
+    const plant = note.plant ? ` · ${esc(note.plant)}` : '';
+    const done = note.status === 'completed';
+
+    return `
+      <div class="note-card">
+        <div class="note-card-top">
+          <div>
+            <div class="note-card-title">${esc(note.title)}</div>
+            <div class="note-card-meta">${fmt(note.date)}${plant}</div>
+            ${done && note.completedAt
+              ? `<div class="note-card-meta">Selesai ${fmt(note.completedAt)}</div>`
+              : ''}
+          </div>
+          ${done ? '<div class="note-status">✓ Terselesaikan</div>' : ''}
+        </div>
+
+        <div class="note-card-content">${esc(note.content)}</div>
+
+        <div class="note-actions">
+          ${done
+            ? `<button class="small-button secondary" onclick="reopenNote(${note.id})">Buka Kembali</button>
+               <button class="small-button danger" onclick="deleteNote(${note.id})">Hapus</button>`
+            : `<button class="small-button secondary" onclick="openNoteModal(${note.id})">Edit</button>
+               <button class="small-button primary" onclick="completeNote(${note.id})">Terselesaikan</button>`}
+        </div>
+      </div>`;
+  }).join('');
+}
+
 function saveNotes(){
-
-  const notesEl =
-    document.getElementById(
-      'notes'
-    );
-
-
-  localStorage.setItem(
-    'jadwalTaniNotes',
-    notesEl.value
-  );
-
-
-  alert(
-    'Catatan tersimpan.'
-  );
-
+  /* Kompatibilitas dengan pemanggilan lama */
+  const old = document.getElementById('notes');
+  if(old){
+    const value = old.value.trim();
+    if(value){
+      const notes = getNotesData();
+      notes.unshift({
+        id: Date.now(),
+        title: 'Catatan Lama',
+        date: getLocalDate(),
+        plant: '',
+        content: value,
+        status: 'active',
+        completedAt: null
+      });
+      setNotesData(notes);
+    }
+  }
+  renderNotes();
 }
 
 
@@ -4417,6 +4885,15 @@ document
 
 
 document
+  .getElementById('noteModal')
+  .addEventListener('click', function(e){
+    if(e.target === this){
+      closeNoteModal();
+    }
+  });
+
+
+document
   .getElementById(
     'cultivationModal'
   )
@@ -4440,28 +4917,15 @@ document
 /* JALANKAN APLIKASI */
 /* ================================================= */
 
-
-function openNotificationPermissionSettings(){
-  if(typeof window.openNotificationSettings === 'function'){
-    window.openNotificationSettings();
-    return;
-  }
-  alert('Silakan buka Pengaturan Android → Aplikasi → Jadwal Tani → Notifikasi, lalu aktifkan izin notifikasi secara manual.');
-}
-
-function openBackgroundPermissionSettings(){
-  if(typeof window.openBatterySettings === 'function'){
-    window.openBatterySettings();
-    return;
-  }
-  alert('Silakan buka Pengaturan Android → Aplikasi → Jadwal Tani → Baterai, lalu pilih Tidak dibatasi atau izinkan aktivitas latar belakang.');
-}
-
 registerSW();
 
 renderFarms();
 
 renderTasks();
+
+renderNotes();
+
+applyDarkMode();
 
 toggleRepeatOptions();
 
