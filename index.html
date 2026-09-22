@@ -1726,18 +1726,23 @@ body.dark-mode .danger{
       </div>
 
       <button
-        type="button"
-        class="small-button primary"
-        id="noteAddButton"
-        onclick="newNote()"
-        aria-label="Tambah catatan"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14"/>
-          <path d="M5 12h14"/>
-        </svg>
-        Tambah
-      </button>
+  type="button"
+  class="small-button primary"
+  id="noteAddButton"
+  onclick="document.getElementById('noteModal').classList.add('show'); document.getElementById('noteModalTitle').textContent='Catatan Baru'; document.getElementById('noteTitle').value=''; document.getElementById('noteDate').value=getLocalDate(); document.getElementById('notePlant').value=''; document.getElementById('noteContent').value=''; editingNoteId=null; return false;"
+  aria-label="Tambah catatan"
+>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path d="M12 5v14"/>
+    <path d="M5 12h14"/>
+  </svg>
+  Tambah
+</button>
 
     </div>
 
