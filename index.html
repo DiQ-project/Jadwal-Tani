@@ -345,6 +345,15 @@ main{
   height:15px;
 }
 
+/* Tombol tambah catatan harus selalu berada di atas elemen lain
+   dan menerima sentuhan di Android/WebView. */
+#noteAddButton{
+  position:relative;
+  z-index:5;
+  pointer-events:auto;
+  touch-action:manipulation;
+}
+
 
 /* ================================================= */
 /* TODAY CARD */
@@ -1256,22 +1265,6 @@ body.dark-mode .danger{
 
       <div class="brand">
 
-        <button
-          class="brand-mark"
-          type="button"
-          onclick="showPage('settings')"
-          aria-label="Pengaturan"
-          title="Pengaturan"
-        >
-
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M4 6h16"/>
-            <path d="M4 12h16"/>
-            <path d="M4 18h16"/>
-          </svg>
-
-        </button>
-
         <div>
 
           <div class="brand-title">
@@ -1286,8 +1279,21 @@ body.dark-mode .danger{
 
       </div>
 
+      <button
+        class="settings-button"
+        type="button"
+        onclick="showPage('settings')"
+        aria-label="Pengaturan"
+        title="Pengaturan"
+      >
 
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 6h16"/>
+          <path d="M4 12h16"/>
+          <path d="M4 18h16"/>
+        </svg>
 
+      </button>
 
     </div>
 
@@ -1677,7 +1683,8 @@ body.dark-mode .danger{
       <button
         type="button"
         class="small-button primary"
-        onclick="window.openNoteModal()"
+        id="noteAddButton"
+        onclick="openNoteModal()"
         aria-label="Tambah catatan"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -4861,6 +4868,16 @@ document
 
     }
   );
+
+
+const noteAddButton = document.getElementById('noteAddButton');
+if(noteAddButton){
+  noteAddButton.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    openNoteModal();
+  });
+}
 
 
 document
