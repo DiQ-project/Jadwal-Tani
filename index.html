@@ -4660,7 +4660,7 @@ let noteFilter = 'active';
 let editingNoteId = null;
 
 function getNotesData(){
-  let notes = JSON.parse(localStorage.getItem(notesKeyV2) || '[]');
+  let notes = JSON.parse(localStorage.getItem('jadwalTaniNotesV2') || '[]');
   if(!Array.isArray(notes)) notes = [];
 
   /* Migrasi catatan lama agar tidak hilang */
@@ -4676,7 +4676,7 @@ function getNotesData(){
         status: 'active',
         completedAt: null
       }];
-      localStorage.setItem(notesKeyV2, JSON.stringify(notes));
+      localStorage.setItem('jadwalTaniNotesV2', JSON.stringify(notes));
     }
   }
   return notes;
