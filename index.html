@@ -2202,7 +2202,7 @@ body.dark-mode .danger{
       <button
   type="button"
   class="button primary"
-  onclick="alert('TOMBOL SIMPAN TERTEKAN')"
+  onclick="try { saveNote(); } catch(e) { alert('ERROR SAVE: ' + e.message); }"
 >
   Simpan Catatan
 </button>
