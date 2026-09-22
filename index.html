@@ -159,16 +159,11 @@ header{
 .brand-mark{
   width:42px;
   height:42px;
-  padding:0;
-  border:0;
   border-radius:13px;
   background:#ffffff20;
-  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
-  flex:0 0 42px;
 }
 
 .brand-mark svg{
@@ -187,39 +182,21 @@ header{
   opacity:.8;
 }
 
-
 .settings-button{
   width:42px;
   height:42px;
   padding:0;
-  margin:0;
-  border:0;
-  outline:none;
   border-radius:13px;
-  background:#ffffff20;
-  color:#ffffff;
+  background:#ffffff18;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
-  flex:0 0 42px;
-  -webkit-appearance:none;
-  appearance:none;
 }
 
 .settings-button svg{
-  width:24px;
-  height:24px;
-  display:block;
-}
-
-.settings-button:focus,
-.settings-button:focus-visible{
-  outline:none;
-}
-
-.settings-button:active{
-  background:#ffffff2b;
+  width:20px;
+  height:20px;
 }
 
 .greeting{
@@ -378,26 +355,6 @@ main{
 .small-button svg{
   width:15px;
   height:15px;
-}
-
-/* Tombol tambah catatan harus selalu berada di atas elemen lain
-   dan menerima sentuhan di Android/WebView. */
-#noteAddButton{
-  position:relative;
-  z-index:999;
-  pointer-events:auto !important;
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
-  cursor:pointer;
-}
-#page-notes .section-head{
-  position:relative;
-  z-index:10;
-}
-#page-notes .section-head > #noteAddButton{
-  position:relative;
-  z-index:1000;
-  pointer-events:auto !important;
 }
 
 
@@ -1189,18 +1146,7 @@ label{
 }
 .background-help.show{display:block}
 
-/* UI text tidak mudah terblok; input tetap bisa dipilih */
-body, header, .card, .bottom-nav, button, label,
-.setting-title, .setting-desc, .brand-title, .brand-subtitle,
-.greeting, .task-group-head, .task-title, .task-meta, .task-time,
-.upcoming-title, .upcoming-meta, .farm-name, .farm-meta{
-  -webkit-user-select:none;
-  user-select:none;
-}
-input, textarea, select{
-  -webkit-user-select:text;
-  user-select:text;
-}
+/* ANTI-COPY DINONAKTIFKAN SEMENTARA UNTUK TES */
 
 /* DARK MODE */
 body.dark-mode{
@@ -1311,6 +1257,12 @@ body.dark-mode .danger{
 
       <div class="brand">
 
+        <div class="brand-mark">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+
+        </div>
+
         <div>
 
           <div class="brand-title">
@@ -1325,18 +1277,25 @@ body.dark-mode .danger{
 
       </div>
 
+
       <button
         class="settings-button"
-        type="button"
         onclick="showPage('settings')"
-        aria-label="Pengaturan"
-        title="Pengaturan"
+        aria-label="Menu" title="Menu"
       >
 
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M4 6h16"/>
-          <path d="M4 12h16"/>
-          <path d="M4 18h16"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+          />
+          <path
+            d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2.4v-.2a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 0 0 8.46 15a1.7 1.7 0 0 0-1.56-1.03H6.7v-2.4h.2A1.7 1.7 0 0 0 8.46 10a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.03-1.56V5h2.4v.2a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.7 1.7-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.03h.2v2.4h-.2A1.7 1.7 0 0 0 19.4 15Z"
+          />
         </svg>
 
       </button>
@@ -1727,9 +1686,7 @@ body.dark-mode .danger{
       </div>
 
       <button
-        type="button"
         class="small-button primary"
-        id="noteAddButton"
         onclick="openNoteModal()"
         aria-label="Tambah catatan"
       >
@@ -4674,32 +4631,6 @@ function getNotesData(){
 
 function setNotesData(notes){
   localStorage.setItem(notesKeyV2, JSON.stringify(notes));
-}
-
-function forceOpenNoteModal(e){
-  if(e){
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  const modal = document.getElementById('noteModal');
-  if(!modal) return;
-
-  const title = document.getElementById('noteTitle');
-  const date = document.getElementById('noteDate');
-  const plant = document.getElementById('notePlant');
-  const content = document.getElementById('noteContent');
-  const modalTitle = document.getElementById('noteModalTitle');
-
-  editingNoteId = null;
-
-  if(modalTitle) modalTitle.textContent = 'Catatan Baru';
-  if(title) title.value = '';
-  if(date) date.value = getLocalDate();
-  if(plant) plant.value = '';
-  if(content) content.value = '';
-
-  modal.classList.add('show');
 }
 
 function openNoteModal(id=null){
