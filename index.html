@@ -187,6 +187,41 @@ header{
   opacity:.8;
 }
 
+
+.settings-button{
+  width:42px;
+  height:42px;
+  padding:0;
+  margin:0;
+  border:0;
+  outline:none;
+  border-radius:13px;
+  background:#ffffff20;
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  flex:0 0 42px;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+.settings-button svg{
+  width:24px;
+  height:24px;
+  display:block;
+}
+
+.settings-button:focus,
+.settings-button:focus-visible{
+  outline:none;
+}
+
+.settings-button:active{
+  background:#ffffff2b;
+}
+
 .greeting{
   margin-top:23px;
 }
@@ -349,9 +384,20 @@ main{
    dan menerima sentuhan di Android/WebView. */
 #noteAddButton{
   position:relative;
-  z-index:5;
-  pointer-events:auto;
+  z-index:999;
+  pointer-events:auto !important;
   touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
+}
+#page-notes .section-head{
+  position:relative;
+  z-index:10;
+}
+#page-notes .section-head > #noteAddButton{
+  position:relative;
+  z-index:1000;
+  pointer-events:auto !important;
 }
 
 
@@ -1684,7 +1730,7 @@ body.dark-mode .danger{
         type="button"
         class="small-button primary"
         id="noteAddButton"
-        onclick="openNoteModal()"
+        onclick="forceOpenNoteModal(event)"
         aria-label="Tambah catatan"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -4630,6 +4676,32 @@ function setNotesData(notes){
   localStorage.setItem(notesKeyV2, JSON.stringify(notes));
 }
 
+function forceOpenNoteModal(e){
+  if(e){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  const modal = document.getElementById('noteModal');
+  if(!modal) return;
+
+  const title = document.getElementById('noteTitle');
+  const date = document.getElementById('noteDate');
+  const plant = document.getElementById('notePlant');
+  const content = document.getElementById('noteContent');
+  const modalTitle = document.getElementById('noteModalTitle');
+
+  editingNoteId = null;
+
+  if(modalTitle) modalTitle.textContent = 'Catatan Baru';
+  if(title) title.value = '';
+  if(date) date.value = getLocalDate();
+  if(plant) plant.value = '';
+  if(content) content.value = '';
+
+  modal.classList.add('show');
+}
+
 function openNoteModal(id=null){
   editingNoteId = id;
   const modal = document.getElementById('noteModal');
@@ -4872,11 +4944,15 @@ document
 
 const noteAddButton = document.getElementById('noteAddButton');
 if(noteAddButton){
-  noteAddButton.addEventListener('click', function(e){
+  const openNotesFromTouch = function(e){
     e.preventDefault();
     e.stopPropagation();
-    openNoteModal();
-  });
+    forceOpenNoteModal(e);
+  };
+
+  noteAddButton.addEventListener('pointerup', openNotesFromTouch, true);
+  noteAddButton.addEventListener('touchend', openNotesFromTouch, true);
+  noteAddButton.addEventListener('click', openNotesFromTouch, true);
 }
 
 
