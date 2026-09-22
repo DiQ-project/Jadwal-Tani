@@ -4657,7 +4657,7 @@ function removeTask(i){
 
 const notesKeyV2 = 'jadwalTaniNotesV2';
 let noteFilter = 'active';
-let editingNoteId = null;
+var editingNoteId = null;
 
 function getNotesData(){
   let notes = JSON.parse(localStorage.getItem('jadwalTaniNotesV2') || '[]');
