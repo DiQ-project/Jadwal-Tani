@@ -4942,20 +4942,6 @@ document
   );
 
 
-const noteAddButton = document.getElementById('noteAddButton');
-if(noteAddButton){
-  const openNotesFromTouch = function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    forceOpenNoteModal(e);
-  };
-
-  noteAddButton.addEventListener('pointerup', openNotesFromTouch, true);
-  noteAddButton.addEventListener('touchend', openNotesFromTouch, true);
-  noteAddButton.addEventListener('click', openNotesFromTouch, true);
-}
-
-
 document
   .getElementById('noteModal')
   .addEventListener('click', function(e){
