@@ -159,11 +159,16 @@ header{
 .brand-mark{
   width:42px;
   height:42px;
+  padding:0;
+  border:0;
   border-radius:13px;
   background:#ffffff20;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
+  cursor:pointer;
+  flex:0 0 42px;
 }
 
 .brand-mark svg{
@@ -180,23 +185,6 @@ header{
   margin-top:3px;
   font-size:12px;
   opacity:.8;
-}
-
-.settings-button{
-  width:42px;
-  height:42px;
-  padding:0;
-  border-radius:13px;
-  background:#ffffff18;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.settings-button svg{
-  width:20px;
-  height:20px;
 }
 
 .greeting{
@@ -1268,11 +1256,21 @@ body.dark-mode .danger{
 
       <div class="brand">
 
-        <div class="brand-mark">
+        <button
+          class="brand-mark"
+          type="button"
+          onclick="showPage('settings')"
+          aria-label="Pengaturan"
+          title="Pengaturan"
+        >
 
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16"/>
+            <path d="M4 12h16"/>
+            <path d="M4 18h16"/>
+          </svg>
 
-        </div>
+        </button>
 
         <div>
 
@@ -1289,27 +1287,7 @@ body.dark-mode .danger{
       </div>
 
 
-      <button
-        class="settings-button"
-        onclick="showPage('settings')"
-        aria-label="Menu" title="Menu"
-      >
 
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
-          />
-          <path
-            d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2.4v-.2a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 0 0 8.46 15a1.7 1.7 0 0 0-1.56-1.03H6.7v-2.4h.2A1.7 1.7 0 0 0 8.46 10a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 0 0 1.88.34 1.7 1.7 0 0 0 1.03-1.56V5h2.4v.2a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.7 1.7-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.03h.2v2.4h-.2A1.7 1.7 0 0 0 19.4 15Z"
-          />
-        </svg>
-
-      </button>
 
     </div>
 
@@ -1697,8 +1675,9 @@ body.dark-mode .danger{
       </div>
 
       <button
+        type="button"
         class="small-button primary"
-        onclick="openNoteModal()"
+        onclick="window.openNoteModal()"
         aria-label="Tambah catatan"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
